@@ -1,0 +1,190 @@
+.mainsettings{
+    width:99.4%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    transition: all 1000ms ease;
+}
+.settings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+    width:100%;
+    background: var(--createnftbackground-color);
+    padding-inline: 1rem;
+    border-radius: 1rem;
+    border: 0.0625rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0.25rem 0rem #8090FF;
+    margin-bottom: 1rem;
+}
+.settings > :nth-child(1){
+    font-size: 2.5rem;
+    margin-block-start:2rem;
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+.heading{
+    display: flex;
+    font-size: 2.5rem;
+    flex-direction:row;
+    justify-content: space-between;
+}
+.setprofilesec{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 2px solid var(--nft-border-color);
+    border-radius: 1rem;
+    padding:1rem;
+    width:100%;
+    margin-block:1rem;
+    font-size: 1rem;
+}
+.setprofilesec p{
+    font-size: 1.6rem;
+}
+.proname{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width:100%;
+    margin-block:0.75rem 0;
+}
+.proname p{
+    font-size: 1.2rem;
+}
+.swift{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.update{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.update p{
+    height: min-content;
+    cursor: pointer;
+}
+.proname input{
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    width:100%;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    padding:0.75rem 1rem;
+    background:var(--nft-searchbar-color);
+    border-radius:0.75rem;
+    color:var(--font-color);
+    border:none;
+    margin-block:0.5rem;
+    outline:none;
+}
+.proname input:hover{
+    outline:1px solid var(--nft-border-color);
+}
+.setprofilesec .createitem{
+    margin-block: 0;
+}
+.deleteacc button{
+    display: flex;
+    align-items:center;
+    font-size: 1.2rem;
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    padding:0.75rem 4rem;
+    margin-block:1rem;
+    background: #ff0000b6;
+    border-radius:0.75rem;
+    color:rgb(255, 255, 255);
+    border:1px solid white;
+    box-shadow: 0.25rem 0.25rem 0 0 #00000040;
+}
+.deleteacc button:hover{
+    box-shadow: none;
+    transform: translate(4px, 4px);
+}
+.rowscroll{
+    width: 100%;
+    height: calc(100vh - 17rem);
+    overflow: scroll;
+}
+.toptable{
+    display: flex;
+    flex-direction: column;
+    width: 99.2%;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.3rem;
+    border-radius: 1rem;
+    padding-block: 1rem;
+    background: var(--createnftbackground-color);
+    border-radius: 1rem;
+    border: 0.0625rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0.25rem 0rem #8090FF;
+}
+.toptable h2{
+    width: 96%;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+.rows{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    font-size: 1.3rem;
+    padding-block: 1rem;
+}
+.toptable .cate{
+    margin-block: 1rem;
+}
+a{
+    text-decoration: none;
+}
+.row ,.rowheader{
+    display: grid;
+    grid-template-columns: repeat(11,1fr);
+    grid-template-rows: auto;
+    width: 100%;
+    align-items: center;
+    padding-block: 0.75rem;
+}
+.rowheader{
+    position: sticky;
+    top:0rem;
+}
+.rows :hover{
+    background: #ffffff22;
+}
+.row :hover{
+    background: #ffffff00;
+}
+.row img{
+    width: 4rem;
+    border-radius: 1rem;
+}
+.cell1{
+    grid-area: 1/1/2/2;
+}
+.cell2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-area: 1/2/2/6;
+}
+.cell2 .name{
+    padding-inline: 1rem;
+}
+.cell3{
+    grid-area: 1/6/2/8;
+}
+.cell4{
+    grid-area: 1/8/2/10;
+}
+.cell5{
+    grid-area: 1/10/2/12;
+}

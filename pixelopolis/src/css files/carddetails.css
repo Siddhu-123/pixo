@@ -1,0 +1,665 @@
+:root{
+    --accfont:1rem;
+    --editlistfont:1rem;
+}
+button{
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: calc(1.4 * var(--accfont));
+    cursor: pointer;
+    border:none;
+}
+.scrollpage{
+    width: 100%;
+    height: calc(100% - 4.5rem);
+    overflow: scroll;
+    position: relative;
+    padding: 1rem;
+}
+.carddetails {
+    width: auto;
+    display: grid;
+    grid-template-columns: 40% 58%;
+    gap: 1rem;
+    grid-auto-rows: 3rem;
+    grid-auto-columns: 5rem;
+}
+.carddetails > :nth-child(n){
+    border: 0.06rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0 0 #8090FF;
+    background: var(--cardgridbackground-color);
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-start;
+}
+.nftlook {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    grid-area: 1 / 1 / 11 / 2;
+}
+.nftlookicons {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.75rem;
+    background-color: #00000066;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nftlook img {
+    width: 100%;
+    height: 100%;
+    object-fit:scale-down;
+}
+.loading{
+    position: absolute;
+    padding: 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    backdrop-filter: blur(5px);
+    transition: all 1s ease;
+}
+.floatingcontainer,.imageoverview{
+    position: absolute;
+    padding: 2rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    backdrop-filter: blur(5px);
+    transition: all 1s ease;
+}
+.imageoverview img {
+    position: relative;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    max-width: 90vw;
+    height:95%;
+    object-fit:scale-down;
+}
+.imageoverview svg {
+    position: relative;
+    left: 49%;
+    top:20px;
+}
+.floatingcontainer .scroll{
+    min-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow:scroll;
+    padding: 0 0.2rem 0.4rem 0;
+}
+.editlist {
+    width: 34rem;
+    height: auto;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--cardgridbackground-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0.1rem 0 #8090FF;
+    padding: 1.5rem;
+    animation: slideIn 1s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50%);
+        height: 0;
+    }
+    to {
+        transform: translateY(0);
+        height: 100%;
+    }
+}
+
+.editlist .top{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    font-size: calc(2 * var(--editlistfont)) ;
+}
+.editlist .top svg{
+    left: 0;
+}
+.editlist .imageinfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+    font-size: calc(1 * var(--editlistfont));
+}
+.editlist .imageinfo .imgnname img{
+    width: 5rem;
+    height: 5rem;
+}
+.imageinfo .imgnname {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+.imgnname .name{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.editlist .priceinfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+.editlist .info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+}
+.editlist .info p{
+    font-size: calc(1.5 * var(--editlistfont));
+}
+.editlist .info span{
+    font-size: calc(1 * var(--editlistfont));
+    text-align: left;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+.editlist .floor{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: baseline;
+    padding: 1rem;
+    background: #00000033;
+    border-radius: 1rem;
+    margin-block: 0.5rem;
+}
+.editlist .floor p{
+    font-size: calc(1.2 * var(--editlistfont));
+}
+.editlist .floor span{
+    font-size: calc(1 * var(--editlistfont));
+    opacity: 0.8;
+}
+.editlist .priceenter{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    background-color: #00000022;
+}
+.priceenter input{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-right: 1px solid var(--nft-border-color);
+    outline: 0;
+    padding: 1rem;
+    background-color: transparent;
+    border-radius: 1rem 0 0 1rem;
+    color: var(--accfont);
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: calc(1.2 * var(--editlistfont));
+}
+.priceenter p{
+    padding: 1rem 2rem;
+    font-size: calc(1.2 * var(--editlistfont));
+}
+.editlist .priceconv{
+    margin-top: 0.5rem;
+    text-align: left;
+}
+.expirydate .top{
+    margin-block: 0.5rem;
+    font-size: calc(1.2 * var(--editlistfont));
+}
+.expirydate .top .smallbuy{
+    font-size: calc(1 * var(--editlistfont));
+}
+.expirydate p{
+    text-align: left;
+}
+.expirydate .heading{
+    margin-block: 1rem;
+    font-size: calc(1.3 * var(--editlistfont));
+}
+.editlist .date{
+    text-align: left;
+    font-size: calc(1 * var(--editlistfont));
+}
+.editlist .date input{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius:1rem;
+    padding: 1rem;
+    background-color: #00000022;
+    color: var(--accfont);
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+    font-size: calc(1.2 * var(--editlistfont));
+}
+.date input:hover{
+    outline:1px solid var(--nft-border-color);
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top:1rem;
+}
+.buttons button,.buttons .createitem{
+    margin-block: 0;
+}
+.buttons .createitem button,.buttons .deleteacc button{
+    padding:0.75rem 3rem;
+    font-size: calc(1 * var(--editlistfont));
+}
+.nftdiscription{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start ;
+    width:100%;
+    height: 100%;
+    grid-area: 11 / 1 / 25 / 2;
+    padding-bottom: 20px;
+}
+.discription , .traits,.about,.saleinfo,.listings,.offers,.itemactivity,.pricehis{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+}
+.dis ,.tra, .abo,.det,.sale,.list,.off,.item,.more{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: calc(1.2 * var(--accfont)) ;
+    border-bottom: 1px solid var(--border-color);
+}
+.dis path,.tra path,.abo path,.det path,.nftuserinfo path,.list path,.off path,.item path,.down path,.more path{
+    fill:var(--border-color);
+}
+.dis :nth-child(n),.tra :nth-child(n),.abo :nth-child(n),.sale :nth-child(n)
+,.det :nth-child(n),.list :nth-child(n),.off :nth-child(n),.item :nth-child(n),.more :nth-child(n){
+    margin: 20px 0 20px 20px;
+}
+.disbody ,.abobody,.offbody{
+    padding:20px;
+}
+.aboscroll ,.disscroll{
+    width: 100%;
+    height: 6rem;
+    overflow: scroll;
+}
+.trascroll{
+    width: 100%;
+    height: 15rem;
+    overflow: scroll;
+}
+.offscroll ,.itemscroll,.listscroll{
+    width: 100%;
+    height: min-content;
+    overflow: scroll;
+}
+.trabody{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 32.7% 32.7% 32.7%;
+    grid-template-rows: auto auto;
+    grid-auto-rows: auto;
+    gap: 5px;
+    padding: 5px;
+}
+.traitelements{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 10px;
+    background: #00000022;
+    border-radius: 10px;
+}
+.details{
+    width: 100%;
+}
+.detbody{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding-block:20px ;
+}
+.detele{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 20px;
+}
+.nftuserinfoout{
+    height: 100%;
+    grid-area: 1 / 2 / 4 / 3;
+}
+.nftuserinfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+}
+.firstline{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom:10px ;
+}
+.firstline a,.namediv a{
+    color: var(--border-color);
+    text-decoration-color: transparent;
+}
+.nftuserinfo .dots{
+    width:auto;
+    height: 20px;
+}
+.nftuserinfo .namediv{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px ;
+}
+.namediv > :nth-child(1){
+    font-size: calc(2 * var(--accfont)) ;
+}
+.metadata{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.metadata>:nth-child(3) path,.sale path{
+    stroke:var(--border-color);
+    fill:transparent;
+}
+.saleinfo{
+    grid-area: 4 /2 / 8 / 3;
+}
+.saleinfo>:nth-child(2){
+    padding: 15px 0 10px 15px;
+}
+.sale1{
+    display: flex;
+    align-items: baseline;
+    gap:20px;
+    padding-inline: 15px;
+}
+.sale1>:nth-child(1){
+    font-size:calc(2 * var(--accfont)) ;
+}
+.sale2{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 48% 48%;
+    grid-template-rows: 56px;
+    justify-content: space-around;
+    padding: 20px 10px;
+}
+.sale2 .buy >:nth-child(2){
+    width:20%;
+}
+.sale2 button{
+    width:100%;
+    border: none;
+    border-radius: 15px;
+    border: 0.06rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0 0 #8090FF;
+    background:#fff ;
+}
+.sale2 >:nth-child(2){
+    background: var(--butbutton-color)
+}
+.sale2 .buy >:nth-child(1){
+    border-radius: 15px 0 0 15px;
+    background: var(--butbutton-color);
+    padding-inline: 10px;
+}
+.sale2 .buy >:nth-child(2){
+    border-radius: 0 15px 15px 0;
+    border-left: 1px solid #999999;
+}
+.sale2 .buy{
+    display: flex;
+}
+.sale2 .make{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.sale2 button:hover{
+    box-shadow: none;
+    transform:translate(2px,2px);
+}
+.pricehis{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: 8 / 2/ 14 / 3;
+}
+.pricebody{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+}
+.chart a{
+    display: none;
+}
+.listings{
+    grid-area: 14 / 2/ 17 / 3;
+}
+.smallbuy{
+    width:auto;
+    height:30px;
+    font-size: calc(1.2 * var(--accfont));
+    background:var(--textcontrols-color);
+    border-radius: 10px;
+    color: var(--border-color);
+    border: none;
+    padding:5px;
+}
+.listbody, .offbody ,.itembody{
+    width: 100%;
+    padding: 15px;
+    height: 100%;
+}
+.listbody th, .listbody td ,.offbody th ,.offbody td,.itembody th ,.itembody td{
+    white-space: nowrap;
+    text-align: left;
+    padding: 10px 5px;
+}
+.offers{
+    grid-area: 17 / 2/ 23 / 3;
+}
+.itemactivity{
+    grid-area: 25 / 1/ 31 / 3;
+    font-size: calc(1.1 * var(--accfont));
+}
+.morefromcol{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
+    grid-area: 31 / 1/ 39 / 3;
+}
+.morebody{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.morefromcol button{
+    width: 10rem;
+    height:3rem;
+    background:var(--textcontrols-color);
+    border-radius: 0.7rem;
+    border: 0.0625rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0  0  #00000040;
+    font-size: calc(1.2 * var(--accfont));
+    color:var(--border-color);
+    font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+}
+.morefromcol button:hover{
+    box-shadow: none;
+    transform:translate(2px,2px);
+}
+.morebody .scroll{
+    width: 100%;
+    overflow-y: scroll;
+    padding: 20px 20px 0px 20px;
+}
+.morebody .items{
+    width: fit-content;
+    max-height: 330px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    padding-bottom: 10px;
+}
+.morebody .cardcol{
+    width:12.7rem;
+}
+@media(max-width:1250px){
+    .nftlook{
+        grid-area: 1 / 1 / 9 / 2;
+    }
+    .nftdiscription{
+        grid-area: 9 / 1 / 23 / 2;
+    }
+    .itemactivity{
+        grid-area: 23 / 1 / 29 / 3;
+    }
+    .morefromcol{
+        grid-area: 29 / 1 / 37 / 3;
+    }
+}
+@media(max-width:768px){
+    .nftlook{
+        grid-area: 1 / 1 / 9 / 3;
+    }
+    .nftuserinfoout{
+        grid-area: 9 / 1 / 12 / 3;
+    }
+    .saleinfo{
+        grid-area: 12 /1 / 16 / 3;
+    }
+    .nftdiscription{
+        grid-area: 16 / 1 / 30 / 3; 
+    }
+    .pricehis{
+        grid-area: 30 / 1 / 36 / 3;
+    }
+    .listings{
+        grid-area: 36 / 1 / 39 / 3;
+    }
+    .offers{
+        grid-area: 39 / 1 / 44 / 3;
+    }
+    .itemactivity{
+        grid-area: 44 / 1 / 50 / 3;
+    }
+    .morefromcol{
+        grid-area: 50 / 1 / 58 / 3;
+    }
+    .editlist{
+        width: 27rem;
+    }
+}
+@media(max-width:500px){
+    .editlist{
+        width: 23rem;
+    }
+    .editlist .buttons .createitem button,.editlist .buttons .deleteacc button{
+        padding:0.75rem 2rem;
+    }
+    :root{
+        --editlistfont:0.8rem;
+    }
+}
+@media(max-width:425px){
+    .sale2{
+        grid-template-columns: 96%;
+        grid-template-rows: 56px 56px;
+        gap: 1vw;
+    }
+    .nftlook{
+        grid-area: 1 / 1 / 7 / 3;
+    }
+    .nftuserinfoout{
+        grid-area: 7 / 1 / 10 / 3;
+    }
+    .saleinfo{
+        grid-area: 10 /1 / 15 / 3;
+    }
+    .nftdiscription{
+        grid-area: 15 / 1 / 29 / 3; 
+    }
+    .pricehis{
+        grid-area: 29 / 1 / 35 / 3;
+    }
+    .listings{
+        grid-area: 35 / 1 / 38 / 3;
+    }
+    .offers{
+        grid-area: 38 / 1 / 43 / 3;
+    }
+    .itemactivity{
+        grid-area: 43 / 1 / 49 / 3;
+    }
+    .morefromcol{
+        grid-area: 49 / 1 / 57 / 3;
+    }
+    .scrollpage .padfooter{
+        padding: 0;
+    }
+    .chart{
+        padding:5px;
+    }
+    .editlist{
+        width: 90vw;
+        padding:1rem;
+    }
+    :root{
+        --editlistfont:0.8rem;
+    }
+}

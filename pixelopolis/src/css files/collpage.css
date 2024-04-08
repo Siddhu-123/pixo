@@ -1,0 +1,689 @@
+.collscroll{
+  display:flex;
+  width: 100%;
+  height: calc(100vh - 4.5rem);
+  overflow: scroll;
+  transition: all 1000ms ease;
+}
+.collount1{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  margin: 0;
+}
+.collprofile {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.collprofileinfo{
+  border-bottom: 0.2rem #ffffff solid;
+  background: var(--navbacktopdown-color);
+  border: 0.06rem solid var(--border-color);
+}
+.collprofilesection{
+  width: 100%;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+}
+.collprofilebackimage{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  height: inherit;
+  overflow:hidden;
+}
+.collprofilebackimage .blurpic{
+  position: absolute;
+  z-index: 1;
+  width: inherit;
+  height: 40rem;
+  object-fit:cover;
+  object-position:0rem -20rem;
+  filter: blur(3px);
+  opacity: 0.6;
+}
+.collprofilebackimage .actualpic{
+  position: absolute;
+  z-index: 2;
+  width: 50%;
+  object-position:0rem -8rem;
+  object-fit:cover;
+}
+.collprofilepic{
+  position: absolute;
+  z-index: 4;
+  width: 12rem;
+  height: 12rem;
+  left:2.5rem;
+  top:12rem;
+  border-radius: 100vh;
+  border: 0.5rem #ffffff solid ;
+  overflow: hidden;
+}
+.collprofilepic img{
+  width: 100%;
+}
+.colloutinfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin:4rem 0 0rem 0;
+  padding-bottom: 2rem;
+  gap:1rem;
+}
+.collinfodiv{
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.collspecsdiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 4rem;
+}
+.spec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-inline: 1.5rem;
+  font-size: 1.2rem;
+}
+.spec > :nth-child(n){
+  margin: 2px;
+}
+.collname{
+  font-size:2.7rem;
+  margin-left: 3rem;
+  text-align: left;
+}
+.collname a{
+  color: var(--border-color);
+  text-decoration-color: transparent;
+}
+.collinfo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:0.5rem;
+  font-size: 1.2rem;
+  margin-left: 3rem;
+}
+.collinfo > :nth-child(2){
+  margin-left: 1rem;
+  opacity: 0.9;
+}
+.collinfo1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:0.5rem;
+  font-size: 1.2rem;
+}
+.collinfo1 > :nth-child(1){
+  height:1.4rem;
+}
+.collinfo1 > :nth-child(2){
+  color:var(--font-color);
+}
+.tabbuttons{
+  color: inherit;
+  font: inherit;
+  outline: none;
+  font-size: 1.2rem;
+  padding:0.8rem;
+  background-color: transparent;
+  border:none;
+  width:auto;
+  border-radius: 1rem;
+  margin-inline: 0.4rem;
+  color:var(--font-color);
+}
+.tabbuttons.active {
+  border: 0.1rem var(--border-color) solid ;
+  box-shadow: 0.25rem 0.25rem 0  0  rgba(0, 0, 0, 0.25);
+  transform:translate(-2px,-2px);
+}
+.tabbuttons:hover{
+  border: 0.1rem var(--border-color) solid ;
+}
+.colltabs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 1rem;
+}
+.colloperationpanel{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.2rem #ffffff solid;
+  background: var(--accsearch-color);
+  border: 1px solid var(--border-color);
+  border-top:none;
+  box-shadow: 0  0.25rem 0.25rem 0  #8090FF;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.collsearchitems{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 1rem;
+  margin:1rem;
+  border: 0.06rem solid var(--border-color);
+  background: var(--searchbar-color);
+  box-shadow: 0  0.25rem  0.25rem  0  rgba(0, 0, 0, 0.25) inset;
+  width: 100%;
+  height: fit-content;
+  font-size:1.5rem;
+  overflow: hidden;
+}
+.collsearchitems input{
+  position:relative;
+  overflow: visible;
+  font-style: normal;
+  width: 100%;
+  font-weight: 400;
+  font-size:1.6rem;
+  line-height: normal;
+  font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: var(--searchinput-color);
+}
+::placeholder{
+  padding: 1.2rem 1.2rem 1.2rem 0 ;
+  color: var(--searchinput-color);
+}
+.collsearchitems svg{
+  width: 1.4rem;
+  margin:1rem;
+}
+.collsearchitems path{
+  stroke:var(--searchinput-color);
+}
+.collsearchfilters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-inline: 1rem 2rem;
+}
+.filtericons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  background: #FFF;
+  border-radius: 10px;
+  border: 1px solid #000;
+  box-shadow: none;
+  margin-right:10px;
+}
+.filtericons svg{
+  height:1.4rem;
+}
+.filtericons .svg2{
+  height:1.6rem;
+}
+.filtericons.active {
+  box-shadow: 0.25rem 0.25rem 0 0 #00000040;
+  transform: translate(-2px, -2px);
+}
+
+.nftscoll{
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 1rem;
+  margin:1rem 2rem;
+}
+.analytics{
+  display: grid;
+  grid-template-columns: repeat(24,1fr);
+  grid-auto-rows: 1rem;
+  padding: 2rem 1rem 0 1rem;
+  gap:1rem;
+}
+.analytics > :nth-child(n){
+  border: 0.06rem solid var(--border-color);
+  box-shadow: 0.25rem 0.25rem 0 0 #8090FF;
+  background: var(--cardgridbackground-color);
+  border-radius: 15px;
+}
+.flrpri a,.sales a{
+  display: none;
+}
+.analytics > :nth-child(n){
+  padding: 1rem;
+}
+.I{
+  grid-area: 1/1/4/9;
+}
+.II{
+  grid-area: 1/9/4/17;
+}
+.III{
+  grid-area: 1/17/4/25;
+}
+.analytics > :nth-child(n) p{
+  text-align: left;
+}
+.I > :nth-child(2),.II > :nth-child(2), .III > :nth-child(2){
+  font-size: 2rem;
+  margin-bottom:1rem ;
+}
+.flrpri{
+  grid-area: 4/15/14/25;
+}
+.chart1{
+  padding: 0.5rem;
+}
+.sales{
+  grid-area: 14/15/24/25;
+}
+.listnft{
+  grid-area: 4/1/24/8;
+}
+.salenft{
+  grid-area: 4/8/24/15;
+}
+.owndis{
+  grid-area: 24/1/38/13;
+}
+.owners{
+  grid-area: 24/13/38/25;
+}
+.listnftscroll,.salenftscroll{
+  width: 100%;
+  height: 96%;
+  overflow: scroll;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+}
+.listnftbody,.salenftbody{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 4px;
+}
+.anacard{
+  width: 100%;
+  height:5rem;
+  border: 0.06rem solid var(--border-color);
+  box-shadow: 0.25rem 0.25rem 0 0 #8090FF;
+  background: var(--shifters-color);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.anacard .combine{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 1rem;
+}
+.anacard img{
+  height: 3.5rem;
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+}
+.anacard .middle ,.anacard .last{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.owndisbody{
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+.eleslide{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.eleslide .text{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem 0.2rem;
+}
+.eleslide .slide{
+  width:100%;
+  height: 1rem;
+  border-radius: 1000px;
+  overflow: hidden;
+  background: #00000033; 
+}
+.slide .line1{
+  width: 100%;
+  height: 1rem;
+  border-radius: 1000px;
+  background: var(--slider-color);
+  transition: all 1s ease;
+}
+.owners .tablehead{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding:0 0.5rem 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.ownerscroll{
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+}
+.ownerbody{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ownerele{
+  width: 100%;
+  min-width: 30rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.ownerele img{
+  height: 3.5rem;
+  border-radius: 0.5rem;
+}
+.ownerele .left,.ownerele .right,.tablehead .right{
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  gap: 1rem;
+  align-items: center;
+}
+.tablehead .right > :nth-child(1){
+  margin-right: 3rem;
+}
+@media(max-width:1440px){
+  .nftscoll{
+    grid-template-columns: repeat(6,1fr);
+  }
+}
+@media(max-width:1024px){
+  .colloutinfo{
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .collspecsdiv{
+    margin: 0 0 0 1rem;
+  }
+  .collprofilepic{
+    width: 10rem;
+    height: 10rem;
+    top:13rem;
+  }
+  .collprofilebackimage .actualpic{
+    width:70%;
+    object-position:0rem -5rem;
+  }
+  .nftscoll{
+    grid-template-columns: repeat(5,1fr);
+  }
+  .collsearchfilters{
+    margin-inline:0.5rem;
+  }
+  .filtericons{
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  .filtericons svg{
+    height:1.2rem;
+  }
+  .filtericons .svg2{
+    height: 1.4rem;
+  }
+  .tabbuttons{
+    font-size: 1rem;
+  }
+  .flrpri{
+    grid-area: 4/1/14/25;
+  }
+  .sales{
+    grid-area: 14/1/24/25;
+  }
+  .listnft{
+    grid-area: 24/1/44/13;
+  }
+  .salenft{
+    grid-area: 24/13/44/25;
+  }
+  .owndis{
+    grid-area: 44/1/58/25;
+  }
+  .owners{
+    grid-area: 58/1/72/25;
+  }
+  .listnftscroll,.salenftscroll{
+    height: 93.5%;
+  }
+}
+@media(max-width:768px){
+  .nftscoll{
+    grid-template-columns: repeat(3,1fr);
+  }
+  .collprofilebackimage .actualpic{
+    object-position:0rem -2rem;
+  }
+  .collname{
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+  .collinfo,.collinfo1,.collspecsdiv{
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+  .collspecsdiv .spec{
+    margin-inline: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .colloperationpanel{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+  }
+  .colltabs{
+    width: 100%;
+    grid-area: 1 / 1 / 2 / 3 ;
+    padding:1rem ;
+    margin-left: 0;
+    border-bottom: 1px solid var(--border-color) ;
+  }
+  .collsearchitems{
+    width: auto;
+    border: 0.06rem solid var(--border-color);
+    background: var(--searchbar-color);
+    box-shadow: 0  0.25rem  0.25rem  0  rgba(0, 0, 0, 0.25) inset;
+    flex-shrink: 1;
+    margin:0.5rem 1rem;
+    grid-area: 2 / 1 / 3 / 2 ;
+  }
+  .collsearchitems input{
+    display: block;
+  }
+  .searchbaricon{
+    grid-area: 2 / 1 / 3 / 3 ;
+  }
+  .filtericons{
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  .filtericons svg{
+    height:1.4rem;
+  }
+  .filtericons .svg2{
+    height: 1.6rem;
+  }
+  .I{
+    grid-area: 1/1/4/25;
+  }
+  .II{
+    grid-area: 4/1/7/25;
+  }
+  .III{
+    grid-area: 7/1/10/25;
+  }
+  .flrpri{
+    grid-area: 10/1/20/25;
+  }
+  .sales{
+    grid-area: 20/1/30/25;
+  }
+  .listnft{
+    grid-area: 30/1/40/25;
+  }
+  .salenft{
+    grid-area: 40/1/50/25;
+  }
+  .owndis{
+    grid-area: 50/1/64/25;
+  }
+  .owners{
+    grid-area: 64/1/78/25;
+  }
+  .tablehead .right > :nth-child(1){
+    margin-right: 0;
+  }
+}
+@media(max-width:500px){
+  .collprofilesection {
+    height: 16rem;
+  }
+
+  .backout{
+    font-size: 0.6rem;
+  }
+  .collountinfo{
+    margin-block-start: 3rem;
+  }
+  .nftscoll{
+    grid-template-columns: repeat(2,1fr);
+  }
+  .colloperationpanel{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto auto;
+  }
+  .collprofilepic{
+    width: 8rem;
+    height: 8rem;
+    top:10rem;
+    left: 1rem;
+    border: 0.3rem #ffffff solid ;
+  }
+  .picout{
+    border: 5px solid #fff;
+  }
+  .picout p{
+    font-size: 1.3rem;
+  }
+  .collsearchitems{
+    width: auto;
+    background:transparent;
+    box-shadow: none;
+    border: none;
+    flex-shrink: 0;
+    margin:0.5rem 1rem;
+  }
+  .collsearchitems input{
+    display: none;
+  }
+  .collsearchbaricon{
+    grid-area: 2 / 1 / 3 / 3 ;
+  }
+  .collsearchfilters{
+    margin-inline:0.5rem;
+  }
+  .filtericons{
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  .filtericons svg{
+    height:1.2rem;
+  }
+  .filtericons .svg2{
+    height: 1.4rem;
+  }
+  .tabbuttons{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .colltabs{
+    padding: 1rem 0.5rem;
+  }
+  .collinfo{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .analytics{
+    padding: 1rem;
+  }
+  .analytics > :nth-child(n){
+    padding: 0.5rem;
+  }
+}
+@media(max-width:400px){
+  .collprofilesection {
+    height: 12rem;
+  }
+  .nftscoll{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .collinfo,.collinfo1,.collspecsdiv{
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+  }
+  .collprofilepic{
+    width: 7rem;
+    height: 7rem;
+    top:7rem;
+  }
+  .colloperationpanel{
+    position: relative;
+  }
+  .filtericons{
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .filtericons svg{
+    height:1.2rem;
+  }
+  .filtericons .svg2{
+    height: 1.4rem;
+  }
+  .tabbuttons{
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,108 @@
+.mainscollection{
+  width:99.4%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  transition: all 1000ms ease;
+}
+.collectionnft{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: start;
+  width:100%;
+  background: var(--createnftbackground-color);
+  padding-inline: 1rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--border-color);
+  box-shadow: 0.25rem 0.25rem 0.25rem 0rem #8090FF;
+  margin-bottom: 1rem;
+}
+.collectionnft > :nth-child(1){
+  font-size: 2.5rem;
+  margin-block-start:2rem;
+  width: 100%;
+}
+.collectionnft > :nth-child(2){
+  width: 100%;
+  text-align: left;
+  margin-block: 0.5rem;
+}
+.cardscroll{
+  width: 100%;
+  overflow: scroll;
+  border-radius: 1rem;
+  border: 2px solid var(--nft-border-color);
+  padding:1rem 1rem 0 1rem;
+  margin-block:1rem;
+}
+.groupcards1{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  transition: all 1000ms ease;
+  margin-block: 1rem;
+}
+
+@media(max-width:1100px){
+  .groupcards1{
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+@media(max-width:920px){
+  .groupcards1{
+    grid-template-columns: repeat(4,1fr);
+  }
+}
+@media(max-width:750px){
+  .groupcards1{
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+@media(max-width:600px){
+  .groupcards1{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media(max-width:425px){
+  .groupcards1{
+    grid-template-columns: repeat(2,1fr);
+  }
+  .groupcards1 .cardcol{
+    position: relative;
+    min-width:0;
+  }
+  .groupcards1 .cardcol .specs , .groupcards1 .cardcol .nftname , .groupcards1 .cardcol .name{
+    display: none;
+  }
+  .groupcards1 .cardcol .text{
+    padding: 0;
+  }
+  .groupcards1 .cardcol .heart{
+    display:block;
+    position: absolute;
+    right: 0.6rem;
+    bottom: 0.6rem;
+  }
+  .groupcards1 .cardcol .image img{
+    border-radius: 0.75rem;
+  }
+  .cardscroll .cate .cateelecoll{
+    border-radius: 0.25rem;
+    padding:0.2rem 0.4rem;
+    border: 0.06rem solid var(--border-color);
+    box-shadow: 0.175rem 0.125rem 4px 0 rgba(0, 0, 0, 0.25) inset;
+    margin: 0.315rem 0.25rem;
+    font-size: 0.8rem;
+  }
+}
+@media(max-width:375px){
+  .groupcards1 .cardcol .heart{
+    right: 0.3rem;
+    bottom: 0.3rem;
+  }
+}

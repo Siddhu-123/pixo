@@ -1,0 +1,226 @@
+@import url('https://fonts.cdnfonts.com/css/zcool-qingke-huangyou');
+* {padding: 0;margin: 0;box-sizing: border-box;}
+
+::-webkit-scrollbar{
+  display: none;
+}
+:root{
+  --font-color:#000;
+  --app-background-color: linear-gradient(180deg, #CAFFFF 0%, #FFF 100%);
+  --border-color: #000;
+  --nft-border-color: #00000079;
+  --navbacktopdown-color:#CAD1FF;
+  --pix-color:#0E21A0;
+  --searchbar-color:#FFF;
+  --searchinput-color:#ff009b47;
+  --iconmenu-color:#fff;
+  --menutext-color:linear-gradient(95deg, #FFA1DA 0%, #80BAFF 100%);
+  --leftside-color:#CAD1FF;
+  --accsearch-color:#CAD1FF;
+  --slider-color: #0E21A0aa;
+  --categoryelement-color: #FFF;
+  --categoryelementtext-color: #000;
+  --trendcollebackground-color: #CAD1FF;
+  --collectorstrend-color:#e1e5ff;
+  --name-svg-color:var(--explorebackground-color);
+  --followfirst-color:#80BAFF;
+  --followsecond-color: #8090FF;
+  --shifters-color:#cad1ffa1;
+  --shiftershover-color:#cad1ff;
+  --slidesbackground-color: linear-gradient(180deg, #E7EAFF 0%, #CAD1FF 90.93%);
+  --explorebackground-color: #465EFF;
+  --textcontrols-color: #80BAFF;
+  --cardbackground-color: #e0e4ff;
+  --specs-color: #0E21A0;
+  --footer-image:url('./images/square/fig (52).jpg');
+  --glow-rgb: 239 42 201;
+  --createnftbackground-color: var(--navbacktopdown-color);
+  --connected: #000000;
+  --connected-background-color:#80BAFF;
+  --notconnected: #0026ff;
+  --notconnected-background-color:#80BAFF;
+  --nft-searchbar-color:#ffffff;
+  --nft-upload:#ffffff79;
+  --heart-stroke-color:#000;
+  --cardgridbackground-color: linear-gradient(180deg, #E7EAFF 0%, #CAD1FF 90.93%);
+  --butbutton-color:linear-gradient(180deg, #E7EAFF 0%, #CAD1FF 90.93%);
+  --cart-color:#c9d1ff;
+}
+.dark-theme{
+  --font-color:#fff;
+  --app-background-color:linear-gradient(180deg, #000C58 0%, #DB7EFF 100%);
+  --border-color: #fff;
+  --nft-border-color: #ffffff79;
+  --navbacktopdown-color:linear-gradient(180deg, #0E21A0 -41%, #E551B0 100%);
+  --pix-color:#fff;
+  --searchbar-color:#8900BE;
+  --searchinput-color:#fff;
+  --iconmenu-color:#172165;
+  --menutext-color:linear-gradient(95deg, #4D2DB7 0%, #EC53B0 100%);
+  --leftside-color:linear-gradient(270deg, #EC53B0 0%, #4D2DB7 100%);
+  --accsearch-color:#E551B0;
+  --slider-color: #ffffff;
+  --categoryelement-color: #EC53B0;
+  --categoryelementtext-color: #fff;
+  --trendcollebackground-color: linear-gradient(90deg, #E953B1 0%, #4F2EB7 100%);
+  --collectorstrend-color:linear-gradient(270deg, #552FB7 0%, #E551B1 100%);
+  --name-svg-color:#FFF;
+  --followfirst-color:#1B28A4;
+  --followsecond-color: #FF55BC;
+  --shifters-color:#EC53B0bb;
+  --shiftershover-color:#EC53B0;
+  --slidesbackground-color: linear-gradient(180deg, #4D2DB7 0%, #EC53B0 90.93%);
+  --explorebackground-color: #1B28A4;
+  --textcontrols-color: #EC53B0;
+  --cardbackground-color: linear-gradient(180deg, #FF6AC4 0%, #1C35DE 100%);
+  --specs-color: #fff;
+  --footer-image:url('./images/square/sunset.jpg');
+  --accprofilebackground-color: linear-gradient(180deg, #0022ff -41%, #E551B0 100%);
+  --createnftbackground-color: transparent;
+  --connected: #3dff3d;
+  --connected-background-color:#1bff1b4c;
+  --notconnected: #ffffffe4;
+  --notconnected-background-color:#f34646d6;
+  --nft-searchbar-color:#ffffff41;
+  --nft-upload:transparent;
+  --heart-stroke-color:#fff;
+  --cardgridbackground-color: linear-gradient(180deg, #3a2289 0%, #d24a9c 90.93%);
+  --butbutton-color:#ffffff;
+}
+
+.App {
+  width:100%;
+  height: 100%;
+  text-align: center;
+  font-family: 'ZCOOL QingKe HuangYou', sans-serif;
+  background: var(--app-background-color);
+  color:var(--font-color);
+  user-select: none;
+}
+.star {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 1rem;
+  animation-duration: 1500ms;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
+@keyframes fall-1 {
+  0% {
+    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+    opacity: 0;
+  }
+  
+  5% {
+    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-2 {
+  0% {
+    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+    opacity: 0;
+  }
+  
+  10% {
+    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-3 {
+  0% {
+    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+    opacity: 0;
+  }
+  
+  15% {
+    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+    opacity: 1;
+  }
+  
+  100% {
+    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+    opacity: 0;
+  }
+}
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+}
+.svg-cursor {
+  position: absolute;
+  width: 31px;
+  height: 41px;
+  fill: black;
+}
+.sidebars{
+  width: 100%;
+  height:calc(100vh - 4.5rem);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+} 
+.loadingsvg{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate:(50%, 50%);
+  z-index: 10000;
+}
+.loadingsvg .svg1 {
+  fill: transparent;
+  animation: fillAnimation 2.8s infinite ease-in-out;
+  animation-delay: 0.6s;
+}
+
+.loadingsvg .svg2 {
+  fill: transparent;
+  animation: fillAnimation 2.8s infinite ease-in-out;
+  animation-delay: 0.7s;
+}
+
+.loadingsvg .svg3 {
+  fill: transparent;
+  animation: fillAnimation 2.8s infinite ease-in-out;
+  animation-delay: 0.9s;
+}
+
+.loadingsvg .svg4 {
+  fill: transparent;
+  animation: fillAnimation 2.8s infinite ease-in-out;
+  animation-delay: 1.1s;
+}
+
+@keyframes fillAnimation {
+  0% {
+    fill: transparent;
+  }
+  50% {
+    fill: var(--border-color);
+  }
+  100% {
+    fill: transparent;
+  }
+}
+
+@media(max-width:500px){
+  .sidebars{
+      height:calc(100vh - 3.5rem);
+  }
+}
