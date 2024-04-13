@@ -55,7 +55,11 @@ const NFTSacc = ({imgg,name,dis,address,id,decide}) => {
         <div className='cardcol'>
             <Link to={`/Assets/${id}`}>
                 <div className="image">
-                    <img src={require(`../../image/nft/${imgg}`)} alt= "nft"/>
+                  <div className="peel"></div>
+                  <div className="peelshadow"></div>
+                  <p className='text2'>Explore NFT</p>
+                  <div className="peelbarshadow"></div>
+                  <img src={require(`../../image/nft/${imgg}`)} alt= "nft"/>
                 </div>
             </Link>
             <div className='text'>

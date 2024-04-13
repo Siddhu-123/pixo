@@ -17,6 +17,7 @@
   --menutext-color:linear-gradient(95deg, #FFA1DA 0%, #80BAFF 100%);
   --leftside-color:#CAD1FF;
   --accsearch-color:#CAD1FF;
+  --peel-color:#CAD1FF;
   --slider-color: #0E21A0aa;
   --categoryelement-color: #FFF;
   --categoryelementtext-color: #000;
@@ -59,6 +60,7 @@
   --menutext-color:linear-gradient(95deg, #4D2DB7 0%, #EC53B0 100%);
   --leftside-color:linear-gradient(270deg, #EC53B0 0%, #4D2DB7 100%);
   --accsearch-color:#E551B0;
+  --peel-color:peachpuff;
   --slider-color: #ffffff;
   --categoryelement-color: #EC53B0;
   --categoryelementtext-color: #fff;

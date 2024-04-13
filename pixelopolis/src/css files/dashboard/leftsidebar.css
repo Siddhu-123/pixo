@@ -7,20 +7,43 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
+  padding-bottom: 1rem;
   z-index:0;
   top: 2.2rem;
   width: 21rem;
   height:83vh;
   max-height: 800px;
-  min-height: 540px;
+  min-height: 440px;
   border-radius: 0 1.2rem 1.2rem 0;
   border: 0.0625rem solid var(--border-color);
   background: var(--leftside-color);
   box-shadow: 0.25rem 0  0.25rem 0  #8090FF;
+  animation: slideright 1s ease;
 }
+
+@keyframes slideright {
+  from {
+      transform: translateX(-50%);
+  }
+  to {
+      transform: translateX(0);
+  }
+}
+@keyframes exist {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
 .leftsidebarsvg{
   position: absolute;
   top:5.2rem;
+  transition: all 0.6s ease;
+  animation: exist 2s ease;
+  fill: linear-gradient(to bottom right, red, blue);
 }
 .marketplace1{
   display: flex;
@@ -155,9 +178,10 @@
 /* /////////////////////////////////////////// */
 /* App.css */
 .ads {
+  width: 100%;
   text-align: center;
   padding-inline: 20px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .ads .slideshow-container {
@@ -227,6 +251,19 @@
   justify-content: center;
   align-items: center;
   margin-inline: 0.6rem;
+}
+.wand{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem;
+  margin-bottom: 1rem;
+}
+.wand p{
+  font-size: calc(2 * var(--font1));
 }
 .magicwand{
   display: flex;
@@ -322,13 +359,36 @@
     --font1:0.5rem;
   }
 }
-@media(max-height:700px){
+@media(max-height:750px){
   .ads img {
     aspect-ratio: 1.4;
   }
 }
-@media(max-height:650px){
+@media(max-height:700px){
   .ads img {
     aspect-ratio: 1.6;
+  }
+}
+@media(max-height:650px){
+  .ads{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ads img{
+    aspect-ratio: 1;
+  }
+}
+@media(max-height:625px){
+  .ads img {
+    aspect-ratio: 1.4;
+  }
+}
+@media(max-height:580px){
+  .leftsidebar > :nth-child(2){
+    display: none;
+  }
+  .ads{
+    display: none;
   }
 }

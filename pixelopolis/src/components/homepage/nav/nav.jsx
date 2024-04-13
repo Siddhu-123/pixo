@@ -1,45 +1,71 @@
 import React,{useState} from 'react';
 import Pixo from './pixo';
 import Themeicon from './themeicon';
+import Searchresults from './search/searchresults';
 import Conwallet from './conwallet';
 import Cartpage from './cartpage/cartpage';
 import {Link} from 'react-router-dom';
 import '../../../css files/nav.css';
+import '../../../css files/search.css';
 function Nav({address}){
   const [imgclick, setimgclick] = useState(false);
   const [cart, setcart] = useState(false);
   const ifclicked = () => {
     if (window.innerWidth <= 1220){
       setimgclick(true);
+      setquery("");
+    }
+    else{
+      setquery("");
     }
   }
   const cartclicked = () => {
     setcart(!cart);
   }
+  const [removetext, setremovetext] = useState('');
+  const [searchcross, setsearchcross] = useState(false);
   const close1 = () => {
     setimgclick(false);
+    setquery("");
+    setremovetext("");
   }
   const close = () => {
     setcart(false);
   }
+  const [query, setquery] = useState('');
+  const handleSearch = (query) => {
+    setquery(query);
+    setremovetext(query);
+    setsearchcross(true);
+  };
   return (
     <>
       { imgclick ? (
         <div className='searchbaricon'>
-          <input type='text' placeholder='Search items, collections and accounts'></input>        
+          <input type='text' placeholder='Search items, collections and accounts'  onChange={(e) => handleSearch(e.target.value)}></input>        
           <svg onClick={close1} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
+          <Searchresults query={query}/>
         </div>):
         ( <div className='nav'>
             <div className='nf'>
               <Link to="/"><Pixo/></Link>
               <div className="searchbar">
-                  <svg onClick={ifclicked} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0703 20.0444C21.9769 18.1313 23.1556 15.4922 23.1556 12.5778C23.1556 6.73583 18.4197 2 12.5778 2C6.73583 2 2 6.73583 2 12.5778C2 18.4197 6.73583 23.1556 12.5778 23.1556C15.5053 23.1556 18.1551 21.9663 20.0703 20.0444ZM20.0703 20.0444L28.5 28.5" stroke="black" stroke-width="3" stroke-linecap="round"/></svg>
-                  <input type='text' placeholder='Search items, collections and accounts'></input>        
-              </div> 
+                  <svg onClick={ifclicked} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.0703 20.0444C21.9769 18.1313 23.1556 15.4922 23.1556 12.5778C23.1556 6.73583 18.4197 2 12.5778 2C6.73583 2 2 6.73583 2 12.5778C2 18.4197 6.73583 23.1556 12.5778 23.1556C15.5053 23.1556 18.1551 21.9663 20.0703 20.0444ZM20.0703 20.0444L28.5 28.5" stroke="black" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                  <input type='text' placeholder='Search items, collections and accounts' value={removetext} onChange={(e) => handleSearch(e.target.value)}/>
+                  {searchcross ? (
+                    <svg className="searchcross" onClick={close1} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  ) : (<></>)}
+              </div>
             </div>
+            <Searchresults query={query}/>
             <div className='nl'>
               <Conwallet/>
               <Link to="/Account">        

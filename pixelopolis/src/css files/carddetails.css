@@ -10,7 +10,7 @@ button{
 }
 .scrollpage{
     width: 100%;
-    height: calc(100% - 4.5rem);
+    height: calc(100vh - 4.5rem);
     overflow: scroll;
     position: relative;
     padding: 1rem;
@@ -73,8 +73,8 @@ button{
     padding: 2rem;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
+    width: 100vw;
+    height: 100%;
     z-index: 11;
     display: flex;
     flex-direction: column;
@@ -116,7 +116,6 @@ button{
     padding: 1.5rem;
     animation: slideIn 1s ease;
 }
-
 @keyframes slideIn {
     from {
         transform: translateY(-50%);
@@ -127,25 +126,46 @@ button{
         height: 100%;
     }
 }
+.buynow {
+    width: 34rem;
+    height: auto;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--cardgridbackground-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0.1rem 0 #8090FF;
+    padding: 1.5rem;
+    animation: slideInbuy 1s ease;
+}
+@keyframes slideInbuy {
+    from {
+        transform: translateY(-50%);
+        height: 0;
+    }
+    to {
+        transform: translateY(0);
+        height: 20rem;
+    }
+}
 
-.editlist .top{
+.editlist .top,.buynow .top{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     font-size: calc(2 * var(--editlistfont)) ;
 }
-.editlist .top svg{
+.editlist .top svg,.buynow .top svg{
     left: 0;
 }
-.editlist .imageinfo{
+.editlist .imageinfo,.buynow .imageinfo{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 2rem;
     font-size: calc(1 * var(--editlistfont));
 }
-.editlist .imageinfo .imgnname img{
+.editlist .imageinfo .imgnname img,.buynow .imageinfo .imgnname img{
     width: 5rem;
     height: 5rem;
 }
@@ -160,28 +180,28 @@ button{
     flex-direction: column;
     align-items: start;
 }
-.editlist .priceinfo{
+.editlist .priceinfo,.buynow .priceinfo{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: end;
 }
-.editlist .info{
+.editlist .info,.buynow .info{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 1.5rem;
 }
-.editlist .info p{
+.editlist .info p,.buynow .info p{
     font-size: calc(1.5 * var(--editlistfont));
 }
-.editlist .info span{
+.editlist .info span,.buynow .info span{
     font-size: calc(1 * var(--editlistfont));
     text-align: left;
     margin-top: 0.5rem;
     opacity: 0.8;
 }
-.editlist .floor{
+.editlist .floor,.buynow .floor span{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -193,14 +213,14 @@ button{
     border-radius: 1rem;
     margin-block: 0.5rem;
 }
-.editlist .floor p{
+.editlist .floor p,.buynow .floor p{
     font-size: calc(1.2 * var(--editlistfont));
 }
-.editlist .floor span{
+.editlist .floor span,.buynow .floor span{
     font-size: calc(1 * var(--editlistfont));
     opacity: 0.8;
 }
-.editlist .priceenter{
+.editlist .priceenter,.buynow .priceenter{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -226,7 +246,7 @@ button{
     padding: 1rem 2rem;
     font-size: calc(1.2 * var(--editlistfont));
 }
-.editlist .priceconv{
+.editlist .priceconv,.buynow .priceconv{
     margin-top: 0.5rem;
     text-align: left;
 }
@@ -244,11 +264,11 @@ button{
     margin-block: 1rem;
     font-size: calc(1.3 * var(--editlistfont));
 }
-.editlist .date{
+.editlist .date,.buynow .date{
     text-align: left;
     font-size: calc(1 * var(--editlistfont));
 }
-.editlist .date input{
+.editlist .date input,.buynow .date input{
     width: 100%;
     height: 100%;
     border: 0;
@@ -494,6 +514,7 @@ button{
     color: var(--border-color);
     border: none;
     padding:5px;
+    margin-inline: 0.5rem;
 }
 .listbody, .offbody ,.itembody{
     width: 100%;
@@ -503,7 +524,7 @@ button{
 .listbody th, .listbody td ,.offbody th ,.offbody td,.itembody th ,.itembody td{
     white-space: nowrap;
     text-align: left;
-    padding: 10px 5px;
+    padding: 10px 0px;
 }
 .offers{
     grid-area: 17 / 2/ 23 / 3;
@@ -601,19 +622,22 @@ button{
     .morefromcol{
         grid-area: 50 / 1 / 58 / 3;
     }
-    .editlist{
+    .editlist,.buynow{
         width: 27rem;
     }
 }
 @media(max-width:500px){
-    .editlist{
+    .editlist,.buynow{
         width: 23rem;
     }
-    .editlist .buttons .createitem button,.editlist .buttons .deleteacc button{
+    .editlist .buttons .createitem button,.editlist .buttons .deleteacc button,.buynow .buttons .createitem button,.buynow .buttons .deleteacc button{
         padding:0.75rem 2rem;
     }
     :root{
         --editlistfont:0.8rem;
+    }
+    .scrollpage{
+        height: calc(100vh - 3.5rem);
     }
 }
 @media(max-width:425px){
@@ -655,7 +679,7 @@ button{
     .chart{
         padding:5px;
     }
-    .editlist{
+    .editlist,.buynow{
         width: 90vw;
         padding:1rem;
     }

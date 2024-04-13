@@ -69,6 +69,7 @@ const Analytics = ({nftdata,colldata,userdata,floor,tolvol})=>{
     var temp = {};
     var t = 0;
     nftdata.forEach(nft => {
+        const address = nft.address;
         nft.transaction.forEach(transarray => {
             let tempObj1 = {};
             if(transarray.event === "listing" || transarray.event === "sale"){
@@ -82,8 +83,7 @@ const Analytics = ({nftdata,colldata,userdata,floor,tolvol})=>{
                 data12.push(tempObj1);
             }
         });
-        temp[nft.address] =  ++t;
-        t = temp[nft.address];
+        temp[address] = (temp[address] || 0) + 1; 
     });
 
     var data1 = data11.slice().sort((a, b) => {
@@ -116,18 +116,21 @@ const Analytics = ({nftdata,colldata,userdata,floor,tolvol})=>{
         per: (count / totalCount) * 100,
         item: range
     }));
-    
+    // console.log(data13);
+
     var temp14 = {};
     var data14 = [];
     var totalnftcount = nftdata.length;
     if(userdata){
         data13.forEach((data) => {
+            temp14 = {};
             var user = userdata.find((item) => item._id === data.address);
             temp14["image"] = user.profileimage;
             temp14["name"] = user.name;
             temp14["address"] = data.address;
             temp14["num"] = data.count;
-            temp14["per"] = (data.count / totalnftcount) * 100;
+            var per = (data.count / totalnftcount) * 100;
+            temp14["per"] = per.toFixed(4);
             data14.push(temp14);
         });
     }

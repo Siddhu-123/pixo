@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
 const cors = require('cors');
+const crypto = require('crypto');
 const nftmodel = require('./models/nft');
 const collectionmodel = require('./models/collection');
 const usermodel = require('./models/user');
@@ -16,8 +17,6 @@ mongoose.connect('mongodb+srv://pixopolisinfo:pixopolis3535@pixopolis.ioxcyjn.mo
   .catch(err => console.log(err));
 
 // create user info when connect to wallet 
-
-
 // Route to create a new user with the provided address
 
 app.post('/createuser', async (req, res) => {
@@ -427,6 +426,82 @@ app.post('/listforsalecontinue', async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+///////////////////////////////////////////////////
+// buynow will transfer the ownership of the nft to the client
+
+app.post('/offercontinue', async (req, res) => {
+  try {
+    const { _id, event, price, date, expirydate,from,to} = req.body;
+    const updatedTransaction = {
+      event: event,
+      price: price,
+      from: from,
+      to: to,
+      date: date,
+      expirydate: expirydate
+    };
+
+    const updatedNFT = await nftmodel.findByIdAndUpdate(
+      _id,
+      { $push: { transaction: updatedTransaction } },
+      { new: true }
+    );
+
+    if (!updatedNFT) {
+      return res.status(404).json({ message: "NFT not found" });
+    }
+
+    res.status(200).json({ message: "Transaction updated successfully!", updatedNFT });
+  } catch (error) {
+    console.error('Error updating transaction:', error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+///////////////////////////////////////////////////
+// an offer lets you bid on NFTs in a collection
+
+app.post('/buynow', async (req, res) => {
+  try {
+    const { _id,previousid, event, price,date,from,to} = req.body;
+    const updatedTransaction = {
+      event: event,
+      price: price,
+      from: from,
+      to: to,
+      date: date,
+      expirydate: date,
+    };
+
+    const updatedNFT = await nftmodel.findByIdAndUpdate(
+      _id,
+      { $push: { transaction: updatedTransaction }, address: to },
+      { new: true }
+    );
+    const objectIdTransactionId = ObjectId(previousid);
+    const updatedNFT1 = await nftmodel.findOneAndUpdate(
+      { _id, "transaction._id": objectIdTransactionId },
+      {
+        $set: {
+          "transaction.$.expirydate": date
+        }
+      },
+      { new: true }
+    );
+
+    if (!updatedNFT) {
+      return res.status(404).json({ message: "NFT not found" });
+    }    
+    if (!updatedNFT1) {
+      return res.status(404).json({ message: "NFT not found 2" });
+    }
+
+    res.status(200).json({ message: "Transaction updated successfully!", updatedNFT });
+  } catch (error) {
+    console.error('Error updating transaction:', error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 ///////////////////////////////////////////////////
 // update viewcount4
@@ -439,5 +514,32 @@ app.post('/updateviewcount', async (req, res) => {
   } catch (error) {
       console.error('Error updating user info:', error);
       res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+//////////////////////////////////////////////////
+//authenicating the user using fingerprint
+
+const generateChallenge = () => {
+  return crypto.randomBytes(32).toString('base64');
+};
+
+// Endpoint for generating a random challenge
+app.get('/generate-challenge', (req, res) => {
+  const challenge = generateChallenge();
+  res.json({ challenge });
+});
+
+// Endpoint for handling fingerprint authentication
+app.post('/authenticate', (req, res) => {
+  const { credentials, challenge } = req.body;
+
+  // Validate credentials and challenge here
+  // For simplicity, let's assume authentication is successful
+  if (credentials && challenge) {
+    res.json({ success: true, message: 'Fingerprint authentication successful' });
+  } else {
+    res.status(400).json({ success: false, message: 'Invalid credentials or challenge' });
   }
 });

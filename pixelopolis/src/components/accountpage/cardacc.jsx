@@ -75,6 +75,10 @@ const Cardacc = ({imgg,name,floor,tolvol,id,decide}) => {
         <div className='cardcol'>
             <Link to={`/collection/${id}`}>
                 <div className="image">
+                    <div className="peel"></div>
+                    <div className="peelshadow"></div>
+                    <p className='text1'>View Collection</p>
+                    <div className="peelbarshadow"></div>
                     <img src={require(`../../image/coll/${imgg}`)} alt='collection'/>
                 </div>
             </Link>

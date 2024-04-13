@@ -72,8 +72,7 @@ const CardDetails = ({address}) => {
     fetchData();
   }, [id,randomNumber]);
   
-  
-  
+
   var str = "";
   var transaction = [];
   var transarray = [];
@@ -137,13 +136,23 @@ const CardDetails = ({address}) => {
   if (transaction.event === "listing"){
     listingdata.push(transaction);
   }
-
   let offersdata = [];
-
+  var temp={};
+  var expiredoffers = false;
+  var expirydate1 = "";
+  var d1 = new Date();
   if(transarray){
     transarray.forEach(transaction => {
+      temp = {};
+      expiredoffers = false;
       if (transaction.event === "offer"){
-        offersdata.push(transaction);
+        temp = transaction;
+        expirydate1 = new Date(transaction.expirydate);
+        if ((expirydate1 - d1) < 0){
+          expiredoffers = true;
+        }
+        temp["expired"] = expiredoffers;
+        offersdata.push(temp);
       }
     });
   }
@@ -177,9 +186,12 @@ const CardDetails = ({address}) => {
   const [fillColor, setFillColor] = useState("#00000000");
   const [imgclick, setimgclick] = useState(true);
   const [listforsale, setlistforsale] = useState(true);
+  const [buynowsuccess ,setbuynowsuccess] = useState("");
   const [listsalesuccess ,setlistsalesuccess] = useState("");
+  const [offersuccess ,setoffersuccess] = useState("");
+  const [offeracceptsuccess ,setofferacceptsuccess] = useState("");
   const [editlisting, seteditlisting] = useState(true);
-  const [editsuccess ,seteditsuccess] = useState(false);
+  const [editsuccess ,seteditsuccess] = useState("");
   const [listed, setlisted] = useState(false);
   const [mine, setmine] = useState(false);
   const [changedate1, setchangedate] = useState(false);
@@ -187,6 +199,8 @@ const CardDetails = ({address}) => {
   const [updatedate3, setupdatedate2] = useState("");
   const [cartbutton,setcartbutton] = useState(null);
   const [buynow, setbuynow] = useState(true);
+  const [offer, setoffer] = useState(true);
+  const [offeraccept, setofferaccept] = useState(true);
 
 
   useEffect(() => {
@@ -296,12 +310,80 @@ const CardDetails = ({address}) => {
   const close = () => {
     setimgclick(!imgclick);
   };
-  const buynowopen = () => {
-    setbuynow(!buynow);
-  };
   const buynowclose = () => {
     setbuynow(!buynow);
   };
+  const buynowform = {};
+  const buynowclick = () => {
+    buynowform["_id"] = id;
+    buynowform["previousid"] = transaction._id;
+    buynowform["event"] = "sale";
+    if(price){
+      buynowform["price"] = price;
+    }
+    buynowform["from"] = nftaddress;
+    buynowform["to"] = address;
+    buynowform["date"] = date2;
+      buynowcontinue();
+  };
+
+  const buynowcontinue = async (e) => {
+    try {
+      await axios.post('http://localhost:5000/buynow', buynowform);
+      setbuynowsuccess("Listing Successful");
+      buynowaftersuccess();
+    } catch (error) {
+        console.error('Error updating data:', error);
+    }
+  };
+  const buynowaftersuccess = () => {
+    setbuynowsuccess("Transfer Successful");
+    setTimeout(() => {
+      setbuynow(!buynow);
+    }, 3000);
+  };
+  ///////////////////////////////////////////
+  const [offerid, setofferid] = useState("");
+  const [offeredaddress, setofferedaddress] = useState("");
+  const [offerprice, setofferprice] = useState(0);
+  const offeracceptclose = ({id,offeraddress,price}) => {
+    setofferedaddress(offeraddress);
+    setofferid(id);
+    setofferprice(price);
+    setofferaccept(!offeraccept);
+    // console.log(id,offeraddress);
+  };
+  const offeracceptform = {};
+  const offeracceptclick = () => {
+    offeracceptform["_id"] = id;
+    offeracceptform["previousid"] = offerid;
+    offeracceptform["event"] = "sale";
+    if(price){
+      offeracceptform["price"] = offerprice;
+    }
+    offeracceptform["from"] = address;
+    offeracceptform["to"] = offeredaddress;
+    offeracceptform["date"] = date2;
+      offeracceptcontinue();
+      // console.log(offeracceptform);
+  };
+
+  const offeracceptcontinue = async (e) => {
+    try {
+      await axios.post('http://localhost:5000/buynow', offeracceptform);
+      setofferacceptsuccess("sale Successful");
+      offeracceptaftersuccess();
+    } catch (error) {
+        console.error('Error updating data:', error);
+    }
+  };
+  const offeracceptaftersuccess = () => {
+    setofferacceptsuccess("sale Successful");
+    setTimeout(() => {
+      setofferaccept(!offeraccept);
+    }, 3000);
+  };
+  ///////////////////////////////////////////
   const editopen = () => {
     seteditlisting(!editlisting);
   };
@@ -321,18 +403,17 @@ const CardDetails = ({address}) => {
       editlistingcontinue();
     }
   };
-
   const editlistingcontinue = async (e) => {
     try {
       await axios.post('http://localhost:5000/editlistingcontinue', editlistform);
-      seteditsuccess(true);
+      seteditsuccess("Edit Listing Successful");
       editcloseaftersuccess();
     } catch (error) {
         console.error('Error updating data:', error);
     }
   };
-
   const editcloseaftersuccess = () => {
+    seteditsuccess("Edit Listing Successful");
     setTimeout(() => {
       seteditlisting(!editlisting);
     }, 5000);
@@ -386,7 +467,7 @@ const CardDetails = ({address}) => {
   const listsalecloseaftersuccess = () => {
     setlistsalesuccess("Listing Successful");
     setTimeout(() => {
-      seteditlisting(!editlisting);
+      setlistforsale(!listforsale);
     }, 3000);
   };
   const removelisting = {};
@@ -408,6 +489,38 @@ const CardDetails = ({address}) => {
     setTimeout(() => {
       seteditlisting(!editlisting);
     }, 5000);
+  };
+  const offerclose = () => {
+    setoffer(!offer);
+  };
+  const offerform = {};
+  const offerclick = () => {
+    offerform["_id"] = id;
+    offerform["event"] = "offer";
+    offerform["price"] = listforsaleprice;
+    offerform["from"] = address;
+    offerform["to"] = nftaddress;
+    offerform["expirydate"] = updatedate3;
+    offerform["date"] = date2;
+    if(offerform && offerform.price > floor1){
+      offercontinue();
+    }
+  };
+
+  const offercontinue = async (e) => {
+    try {
+      await axios.post('http://localhost:5000/offercontinue', offerform);
+      setoffersuccess("Offer Successful");
+      offercloseaftersuccess();
+    } catch (error) {
+        console.error('Error updating data:', error);
+    }
+  };
+  const offercloseaftersuccess = () => {
+    setoffersuccess("Offer Successful");
+    setTimeout(() => {
+      setoffer(!offer);
+    }, 3000);
   };
   return (
     <>  
@@ -485,6 +598,7 @@ const CardDetails = ({address}) => {
                     )}
                   </div>
                   <div className="buttons">
+                    <p>{editsuccess}</p>
                     <div className='deleteacc'>
                       <button onClick={removelistings} type='button'>Cancel all listings</button>
                     </div>
@@ -549,7 +663,7 @@ const CardDetails = ({address}) => {
                   <div className="buttons">
                     <p>{listsalesuccess}</p>
                     <div className='createitem'>
-                      <button onClick={listforsaleclick} type="button">Continue</button>
+                      <button onClick={() => listforsaleclick()} type="button">Continue</button>
                     </div>
                   </div>
                 </div>
@@ -562,7 +676,7 @@ const CardDetails = ({address}) => {
         (
           <div className='floatingcontainer'>
             <div className="scroll">
-              <div className="editlist">
+              <div className="buynow">
                 <div className="top">
                   <p>buynow</p>
                   <svg onClick={buynowclose} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="30px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -579,14 +693,49 @@ const CardDetails = ({address}) => {
                     </div>
                   </div>
                   <div className="priceinfo">
+                    <p>Price</p>
+                    <p>{price} ETH</p>
+                    <p><EthereumToINR price={price}/></p>
+                  </div>
+                </div>
+                <div className='createitem'>
+                  <p>{buynowsuccess}</p>
+                  <button onClick={() => buynowclick()} type="button">Buy Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      {offer ? (<></>):
+        (
+          <div className='floatingcontainer'>
+            <div className="scroll">
+              <div className="editlist">
+                <div className="top">
+                  <p>Offer</p>
+                  <svg onClick={offerclose} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="30px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </div>
+                <div className="imageinfo">
+                  <div className="imgnname">
+                    <img src={imagepath} alt= "nft"/>
+                    <div className="name">
+                      <h3>{name0}</h3>
+                      <p>sale ends <Timeleft timestamp={transaction.expirydate}/></p>
+                    </div>
+                  </div>
+                  <div className="priceinfo">
                     <p>Previous listing Price</p>
                     <p>{price} ETH</p>
                     <p><EthereumToINR price={price}/></p>
                   </div>
                 </div>
                 <div className="info">
-                  <p>Set a higher price</p>
-                  <span>Ensuring a strategic pricing strategy for your NFT is paramount as it establishes an upward trajectory, whereby each subsequent price surpasses the previous one. This deliberate escalation not only fosters consistent appreciation in NFT value but also cultivates favorable conditions for sustained growth within the NFT market.</span>
+                  <p>What is an Offer?</p>
+                  <span>In pixopolis an offer lets you bid on NFTs in a collection, rather than buying directly.If you make an offer, you must wait for the seller to accept or reject it.. If your transaction is successful, your NFT will be sent to your wallet. You can view all the NFTs you bought in your profile's "NFT's" tab.</span>
                 </div>
                 <div className="floor">
                   <p>Floor</p>
@@ -602,18 +751,51 @@ const CardDetails = ({address}) => {
                   ):(<p>{errorprice}</p>)}
                 </div>
                 <div className="expirydate">
-                  <p className='heading'>Enter an expirydate for the nft</p>
+                  <p className='heading'>Enter an expirydate for the offer</p>
                   <div className="date">
                       <input type="datetime-local" onChange={updatedate2} required/>
                   </div>
                   <div className="buttons">
-                    <div className='deleteacc'>
-                      <button type='button'>Cancel all listings</button>
-                    </div>
+                    <p>{offersuccess}</p>
                     <div className='createitem'>
-                      <button onClick={listforsaleclick} type="button">Continue</button>
+                      <button onClick={() => offerclick()} type="button">Continue</button>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      {offeraccept ? (<></>):
+        (
+          <div className='floatingcontainer'>
+            <div className="scroll">
+              <div className="buynow">
+                <div className="top">
+                  <p>Offer Accept</p>
+                  <svg onClick={offeracceptclose} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="30px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </div>
+                <div className="imageinfo">
+                  <div className="imgnname">
+                    <img src={imagepath} alt= "nft"/>
+                    <div className="name">
+                      <h3>{name0}</h3>
+                      <p><Timeleft timestamp={transaction.expirydate}/></p>
+                    </div>
+                  </div>
+                  <div className="priceinfo">
+                    <p>Price</p>
+                    <p>{price} ETH</p>
+                    <p><EthereumToINR price={price}/></p>
+                  </div>
+                </div>
+                <div className='createitem'>
+                  <p>{offeracceptsuccess}</p>
+                  <button onClick={() => offeracceptclick()} type="button">Offer Accepted</button>
                 </div>
               </div>
             </div>
@@ -779,7 +961,7 @@ const CardDetails = ({address}) => {
                 {listed && !mine ? (
                   <>
                   <div className='buy'>
-                    <button onClick={buynowopen}>Buy now</button>
+                    <button onClick={buynowclose}>Buy now</button>
                     {cartbutton ? (
                       <button onClick={cartclick}>
                         <svg width="1.7rem" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -793,7 +975,7 @@ const CardDetails = ({address}) => {
                         </svg>
                       </button>)}
                   </div>
-                  <button className='make'>
+                  <button onClick={offerclose} className='make'>
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M0.104757 9.19337C0.348704 10.0459 1.00575 10.7021 2.31898 12.0153L3.87446 13.5708C6.16093 15.8581 7.30332 16.9997 8.7228 16.9997C10.1431 16.9997 11.2855 15.8573 13.5711 13.5717C15.8576 11.2852 17 10.1428 17 8.72248C17 7.303 15.8576 6.15976 13.572 3.87414L12.0165 2.31866C10.7024 1.00542 10.0462 0.348382 9.1937 0.104435C8.34116 -0.140362 7.43592 0.0687355 5.62629 0.48693L4.5825 0.727477C3.05932 1.07852 2.29773 1.25447 1.77584 1.77551C1.25479 2.29741 1.07885 3.059 0.7278 4.58218L0.486403 5.62597C0.0690578 7.43645 -0.13919 8.34083 0.104757 9.19337ZM6.90382 4.48018C7.06777 4.63828 7.19856 4.82747 7.28857 5.03668C7.37859 5.2459 7.42601 5.47095 7.42807 5.6987C7.43014 5.92645 7.3868 6.15233 7.3006 6.36314C7.21439 6.57395 7.08705 6.76548 6.926 6.92653C6.76495 7.08758 6.57343 7.21492 6.36261 7.30113C6.1518 7.38733 5.92592 7.43067 5.69818 7.4286C5.47043 7.42654 5.24537 7.37911 5.03616 7.2891C4.82694 7.19909 4.63776 7.06829 4.47965 6.90435C4.16775 6.58093 3.99528 6.148 3.99936 5.6987C4.00343 5.24941 4.18372 4.81967 4.50143 4.50196C4.81914 4.18425 5.24888 4.00396 5.69818 3.99988C6.14747 3.99581 6.5804 4.16828 6.90382 4.48018ZM14.4925 8.54313L8.56045 14.4761C8.44017 14.5921 8.2791 14.6563 8.11196 14.6548C7.94481 14.6532 7.78495 14.5861 7.66681 14.4679C7.54866 14.3496 7.4817 14.1897 7.48032 14.0225C7.47895 13.8554 7.54328 13.6944 7.65946 13.5742L13.5907 7.64129C13.7103 7.5217 13.8725 7.45452 14.0416 7.45452C14.2107 7.45452 14.3729 7.5217 14.4925 7.64129C14.6121 7.76088 14.6793 7.92308 14.6793 8.09221C14.6793 8.26134 14.6121 8.42354 14.4925 8.54313Z" fill="#0C1E92"/>
                     </svg>
@@ -812,7 +994,7 @@ const CardDetails = ({address}) => {
                 </button>
               ):("")}
               {(!listed && !mine) ? (
-                <button className='make'>
+                <button onClick={offerclose} className='make'>
                   <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M0.104757 9.19337C0.348704 10.0459 1.00575 10.7021 2.31898 12.0153L3.87446 13.5708C6.16093 15.8581 7.30332 16.9997 8.7228 16.9997C10.1431 16.9997 11.2855 15.8573 13.5711 13.5717C15.8576 11.2852 17 10.1428 17 8.72248C17 7.303 15.8576 6.15976 13.572 3.87414L12.0165 2.31866C10.7024 1.00542 10.0462 0.348382 9.1937 0.104435C8.34116 -0.140362 7.43592 0.0687355 5.62629 0.48693L4.5825 0.727477C3.05932 1.07852 2.29773 1.25447 1.77584 1.77551C1.25479 2.29741 1.07885 3.059 0.7278 4.58218L0.486403 5.62597C0.0690578 7.43645 -0.13919 8.34083 0.104757 9.19337ZM6.90382 4.48018C7.06777 4.63828 7.19856 4.82747 7.28857 5.03668C7.37859 5.2459 7.42601 5.47095 7.42807 5.6987C7.43014 5.92645 7.3868 6.15233 7.3006 6.36314C7.21439 6.57395 7.08705 6.76548 6.926 6.92653C6.76495 7.08758 6.57343 7.21492 6.36261 7.30113C6.1518 7.38733 5.92592 7.43067 5.69818 7.4286C5.47043 7.42654 5.24537 7.37911 5.03616 7.2891C4.82694 7.19909 4.63776 7.06829 4.47965 6.90435C4.16775 6.58093 3.99528 6.148 3.99936 5.6987C4.00343 5.24941 4.18372 4.81967 4.50143 4.50196C4.81914 4.18425 5.24888 4.00396 5.69818 3.99988C6.14747 3.99581 6.5804 4.16828 6.90382 4.48018ZM14.4925 8.54313L8.56045 14.4761C8.44017 14.5921 8.2791 14.6563 8.11196 14.6548C7.94481 14.6532 7.78495 14.5861 7.66681 14.4679C7.54866 14.3496 7.4817 14.1897 7.48032 14.0225C7.47895 13.8554 7.54328 13.6944 7.65946 13.5742L13.5907 7.64129C13.7103 7.5217 13.8725 7.45452 14.0416 7.45452C14.2107 7.45452 14.3729 7.5217 14.4925 7.64129C14.6121 7.76088 14.6793 7.92308 14.6793 8.09221C14.6793 8.26134 14.6121 8.42354 14.4925 8.54313Z" fill="#0C1E92"/>
                   </svg>
@@ -856,7 +1038,7 @@ const CardDetails = ({address}) => {
                       <td><Timeleft timestamp={data.expirydate}/></td>
                       <td>{data.from.substring(0,6)+"..."+data.from.substring(36,)}</td>
                       <td>{!mine? (
-                        <button className='smallbuy'>Buy</button>)
+                        <button onClick={buynowclose} className='smallbuy'>Buy</button>)
                         :(<button onClick={smallbuybutton} className='smallbuy'>edit</button>)}</td>
                     </tr>
                   ))}
@@ -873,21 +1055,25 @@ const CardDetails = ({address}) => {
               <div className="offscroll">
                 <table className='offbody'>
                   <tr>
-                    <th>ETH Price</th>
-                    <th>INR Price</th>
+                    <th>ETH Price (INR Price)</th>
                     <th>Quantity</th>
                     <th>Floor Difference</th>
-                    <th>Expiration</th>
                     <th>From</th>
+                    <th>Expiration</th>
                   </tr>
                   {offersdata.map((data, index) => (
                     <tr key={index}>
-                      <td>{data.price} ETH</td>
-                      <td><EthereumToINR price={data.price}/></td>
+                      <td><p>{data.price} ETH <EthereumToINR price={data.price}/></p></td>
                       <td>1</td>
-                      <td></td> 
+                      <td>{(((data.price/price)*100)-100).toFixed(4)}</td> 
+                      <td>{data.from.substring(0,6)+"..."+data.from.substring(36,)}</td>
                       <td><Timeleft timestamp={data.expirydate}/></td>
-                      <td>{data.to.substring(0,6)+"..."+data.to.substring(36,)}</td>
+                      <td>{!mine ? (<></>)
+                        :(<>{data.expired ? (<></>):(<>
+                        <button onClick={() => offeracceptclose({ id: data._id,offeraddress: data.from,price: data.price})} className='smallbuy'>accept</button><span> </span>
+                        <button onClick={smallbuybutton} className='smallbuy'>reject</button>
+                        </>)}
+                        </>)}</td>
                     </tr>
                   ))}
                 </table>

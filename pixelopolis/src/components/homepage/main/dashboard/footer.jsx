@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Pixo from '../../nav/pixo';
 import { Link } from 'react-router-dom';
 import i1 from "../../../../images/github.png";
@@ -11,10 +11,10 @@ function Footer() {
 
     const handleIconClick = (index) => {
         localStorage.setItem('category', index);
+        localStorage.setItem('dash', 0);
     };
     const handleIconClick1 = (index) => {
         localStorage.setItem('dash', index);
-        window.location.reload();
     };
     return (
         <div className="padfooter">

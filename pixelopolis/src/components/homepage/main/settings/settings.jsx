@@ -55,7 +55,7 @@ const Settings = ({ address }) => {
         }, 5000);
     }
     return (
-        <div className="mainsettings">
+        <div className="mainsettings1">
             <div className='settings'>
                 <div className="heading">
                     <p>Settings</p>

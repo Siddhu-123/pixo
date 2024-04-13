@@ -1,0 +1,167 @@
+.searchresults{
+    position: absolute;
+    z-index: 13;
+    width: 90%;
+    height: 85vh;
+    top: 4.5rem;
+    left: 5%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    background: var(--trendcollebackground-color);
+    backdrop-filter: blur(6px);
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0.25rem 0.2rem  0 0  #8090FF;
+    padding: 0.75rem;
+    gap: 0.75rem;
+}
+.searchresults .users{
+    grid-area: 1 / 1 / 6 / 3;
+    border: 1px solid var(--border-color);
+    box-shadow: 0.25rem 0.2rem  0.3rem 0  #8090FF;
+    border-radius: 0.8rem ;
+    padding: 0.5rem;
+    overflow: hidden;
+}
+.searchresults .nfts{
+    grid-area: 1 / 3 / 6 / 6;
+    border: 1px solid var(--border-color);
+    box-shadow: 0.25rem 0.2rem  0.3rem 0  #8090FF;
+    border-radius: 0.8rem ;
+    padding: 0.5rem;
+    overflow: hidden;
+    min-width: 28rem;
+}
+.searchresults .colls{
+    grid-area: 1 / 6 / 6 / 9;
+    border: 1px solid var(--border-color);
+    box-shadow: 0.25rem 0.2rem  0.3rem 0  #8090FF;
+    border-radius: 0.8rem ;
+    padding: 0.5rem;
+    overflow: hidden;
+    min-width: 26rem;
+}
+.searchresults .heading1{
+    width: 100%;
+    text-align: left;
+    font-size: 1.8rem;
+}
+.searchresults .text1{
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+}
+
+/* usercard */
+.scrollusers,.scrollnfts{
+    width: 100%;
+    height: 92%;
+    overflow-y: auto;
+    padding: 0.3rem;
+    overflow: scroll;
+}
+.usercards{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    height: fit-content;
+}
+.usercard{
+    width: 100%;
+    height:4rem;
+    border: 0.06rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0 0 #00000044;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.usercard .combine{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 1rem;
+    white-space: nowrap;
+}
+.usercard img{
+    width: 3rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+}
+.usercard .middle ,.usercard .last{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+  /* usercard done */
+    /* nftcard */
+
+.nftcards ,.collcards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    height: fit-content;
+}
+.nftcard{
+    width: 100%;
+    min-width: 13.5rem;
+    height: 7rem;
+    border: 0.06rem solid var(--border-color);
+    box-shadow: 0.25rem 0.25rem 0 0 #00000044;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 0.8rem;
+}
+.nftcard img{
+    width: 6rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+}
+.nftcard .sidetext{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-inline: 0.5rem ;
+    gap: 1rem;
+}
+.nftcard .sidetextcoll{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-inline: 0.5rem ;
+    gap: 0.5rem;
+    text-align: left;
+}
+.nftcard .sidetext p{
+    text-align: left;
+    word-break: break-all;
+}
+/* nftcard done */
+/* collcard */
+@media (max-width: 1320px){
+    .searchresults .users{
+        grid-area: 1 / 1 / 3 / 4;
+    }
+    .searchresults .nfts{
+        grid-area: 1 / 4 / 5 / 9;
+    }        
+    .searchresults .colls{
+        grid-area: 3 / 1 / 5 / 4;
+    }
+    .nftcards{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .collcards{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

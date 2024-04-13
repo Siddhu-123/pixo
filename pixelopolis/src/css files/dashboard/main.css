@@ -7,7 +7,17 @@
     align-items: center;
     overflow: hidden;
     position: relative;
-    padding:50px 10px 0 35px
+    padding:50px 10px 0 35px;
+    animation: slideup 1s ease;
+}
+
+@keyframes slideup {
+  from {
+      transform: translateY(50%);
+  }
+  to {
+      transform: translateY(0);
+  }
 }
 .mains{
     width:100%;

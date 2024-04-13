@@ -10,6 +10,16 @@
   border: 0.0625rem solid var(--border-color);
   box-shadow: 0.25rem 0.25rem 0.25rem 0rem #8090FF;
   margin-bottom: 1rem;
+  animation: slideupv 1s ease-out;
+}
+
+@keyframes slideupv {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .virtuallandpage .heading{
   width: 100%;
@@ -25,7 +35,8 @@
 }
 .imagegrid .nftimage{
   width: 100%;
-  margin-bottom: 0.5rem ;
+  margin-bottom: 0.5rem;
+  animation: slideupv 1s ease-out;
 }
 .imagegrid .nftimage img{
   max-width: 100%;

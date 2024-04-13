@@ -18,11 +18,7 @@ const EthereumToINR = ({price,refresh}) => {
   }, [price,refresh]);
   return (
     <div>
-      {ethToInr !== null ? (
-        <p>₹{price * ethToInr}</p>
-      ) : (
-        <p>Loading...</p>
-      )}
+      {ethToInr !== null ? (<p>₹{(price * ethToInr).toFixed(4)}</p>) : (<p>Loading...</p>)}
     </div>
   );
 };

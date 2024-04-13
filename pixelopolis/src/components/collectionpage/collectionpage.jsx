@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { debounce } from 'lodash';
 import '../../css files/collpage.css';
 import { useParams } from 'react-router-dom';
 import Footer from '../homepage/main/dashboard/footer';
@@ -27,7 +28,7 @@ const Collectionpage = ({address}) => {
     const [colldata, setcolldata] = useState(null);
     const [userdata, setuserdata] = useState([]);
     const [usersdata, setusersdata] = useState(null);
-    const [randomNumber, setRandomNumber] = useState(null);
+    const [randomNumber, setRandomNumber] = useState(1);
     const [decide, setdecide] = useState(true);
     const [collimage,setcollimage] = useState("images.png");
     
@@ -105,45 +106,72 @@ const Collectionpage = ({address}) => {
     });
 
     const filterfunction = () => {
-        let sortedNftData;
+
         if (nftdata && nftdata.length > 0) {
-            if (filter === 0) {
-                sortedNftData = nftdata.slice().sort((a, b) => {
-                    const dateA = new Date(a.transaction[0].date);
-                    const dateB = new Date(b.transaction[0].date);
-                    return dateA - dateB;
-                });
-            } else if (filter === 1) {
-                sortedNftData = nftdata.slice().sort((a, b) => {
-                    const dateA = new Date(a.transaction[0].date);
-                    const dateB = new Date(b.transaction[0].date);
-                    return dateB - dateA;
-                });
-            }
-            else if (filter === 2) {
-                sortedNftData = nftdata.slice().sort((a, b) => {
-                    const priceA = a.transaction[0].price;
-                    const priceB = b.transaction[0].price;
-                    return priceA - priceB;
-                });
-            } else if (filter === 3) {
-                sortedNftData = nftdata.slice().sort((a, b) => {
-                    const priceA = a.transaction[0].price;
-                    const priceB = b.transaction[0].price;
-                    return priceB - priceA;
-                });
+            let sortedNftData;
+            switch (filter) {
+                case 0:
+                    sortedNftData = sortNftsByDate(nftdata.slice(), true);
+                    break;
+                case 1:
+                    sortedNftData = sortNftsByDate(nftdata.slice(), false);
+                    break;
+                case 2:
+                    sortedNftData = sortNftsByPrice(nftdata.slice(), true);
+                    break;
+                case 3:
+                    sortedNftData = sortNftsByPrice(nftdata.slice(), false);
+                    break;
+                default:
+                    sortedNftData = nftdata.slice();
             }
             setnftsdata(sortedNftData);
         }
-    }
+    };
+    
+    const sortNftsByDate = (data, ascending) => {
+        return data.sort((a, b) => {
+            const dateA = new Date(a.transaction[0].date);
+            const dateB = new Date(b.transaction[0].date);
+            return ascending ? dateA - dateB : dateB - dateA;
+        });
+    };
+    
+    const sortNftsByPrice = (data, ascending) => {
+        return data.sort((a, b) => {
+            const priceA = a.transaction[0].price;
+            const priceB = b.transaction[0].price;
+            return ascending ? priceA - priceB : priceB - priceA;
+        });
+    };
     
     useEffect(() => {
         filterfunction();
-    }, [nftdata,filter]);
-
+    }, [nftdata, filter]);
+    
     const handleFilterChange = (newValue) => {
         setfilter(newValue);
     };
+    const [query, setquery] = useState('');    
+    const handlesearchinput = (e) => {
+        handleSearch(e.target.value);
+        setquery(e.target.value);
+    };
+
+    const [results, setResults] = useState([]);
+
+    const handleSearch = (inputValue) => {
+        const filteredResults = nftsdata.filter(obj => {
+            return (
+                obj.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+                obj.description.toLowerCase().includes(inputValue.toLowerCase()) ||
+                obj.traits.toLowerCase().includes(inputValue.toLowerCase())
+            );
+        });
+        setResults(filteredResults);
+    };
+    
+    const debouncedHandleSearchInput = debounce(handlesearchinput, 500);
 
     const floor1 = parseFloat(floor.sort()[0]);
     let tolvol = 0;
@@ -244,7 +272,7 @@ const Collectionpage = ({address}) => {
                             <div className="colloperationpanel">
                                 { imgclick ? (
                                     <div className='searchbaricon'>
-                                        <input type='text' placeholder='Search items, collections and collounts'></input>
+                                        <input type='text' placeholder='Search items, collections and collounts' onChange={debouncedHandleSearchInput} ></input>
                                         <svg onClick={close} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <line x1="18" y1="6" x2="6" y2="18"></line>
                                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -264,7 +292,7 @@ const Collectionpage = ({address}) => {
                                         </div>
                                         <div className="collsearchitems">
                                             <svg onClick={ifclicked} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0703 20.0444C21.9769 18.1313 23.1556 15.4922 23.1556 12.5778C23.1556 6.73583 18.4197 2 12.5778 2C6.73583 2 2 6.73583 2 12.5778C2 18.4197 6.73583 23.1556 12.5778 23.1556C15.5053 23.1556 18.1551 21.9663 20.0703 20.0444ZM20.0703 20.0444L28.5 28.5" stroke="black" strokeWidth="3" strokeLinecap="round"/></svg>
-                                            <input type='text' placeholder='Search items'></input>
+                                            <input type='text' placeholder='Search items' onChange={debouncedHandleSearchInput} ></input>
                                         </div>
                                         <Filters onFilterChange={handleFilterChange}/>
                                     </>
@@ -272,17 +300,31 @@ const Collectionpage = ({address}) => {
                             </div>
                             {!activeIndex ? (
                                 <div className="nftscoll">
-                                    {nftsdata.map((item, index) => (
-                                        <NFTSacc
-                                            key={index}
-                                            imgg={item.image}
-                                            name={item.name}
-                                            dis={item.description}
-                                            id={item._id}
-                                            address={address}
-                                            decide={decide}
-                                        />
-                                    ))}
+                                    {query ? (<>
+                                        {results.map((item, index) => (
+                                            <NFTSacc
+                                                key={index}
+                                                imgg={item.image}
+                                                name={item.name}
+                                                dis={item.description}
+                                                id={item._id}
+                                                address={address}
+                                                decide={decide}
+                                            />
+                                        ))}
+                                    </>):(<>
+                                        {nftsdata.map((item, index) => (
+                                            <NFTSacc
+                                                key={index}
+                                                imgg={item.image}
+                                                name={item.name}
+                                                dis={item.description}
+                                                id={item._id}
+                                                address={address}
+                                                decide={decide}
+                                            />
+                                        ))}
+                                    </>)}
                                 </div>
                             ) : (
                                 <Analytics nftdata={nftdata} colldata={colldata} userdata={usersdata} floor={floor1} tolvol={tolvol}/>

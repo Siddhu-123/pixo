@@ -39,15 +39,19 @@ function Leftsidebar({dashboardclick1,virtuallandclick1,createclick1,collectclic
   return (
     <>
       <svg className='leftsidebarsvg' width="344" height={l} viewBox={vi} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d={dynamicPath} stroke="#455EFF" stroke-width="14"/>
+        <path d={dynamicPath} stroke="#455EFF" stroke-width="14"/>
       </svg>
-      
       <div className='leftsidebar'> 
         <Marketplace dashboardclick={dashboardclick1} virtuallandclick={virtuallandclick1} trendingclick={trendingclick1} topclick={topclick1} theme={hasTheme}/>
         <img className='sideline' src={sideline}></img>
         <Ads/>
         <img className='sideline' src={sideline}></img>
         <Accside createclick= {createclick1} collectclick= {collectclick1} favclick= {favclick1} setclick= {setclick1} theme={hasTheme}/>
+        <img className='sideline' src={sideline}></img>
+        <div className="wand">
+          <p>Magic Wand</p>
+          <Wand/>
+        </div>
       </div>
     </>
   );

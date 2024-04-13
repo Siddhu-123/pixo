@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 function Follow({address}){
   const [followclick, setfollowclick] = useState(null);
+  const [you,setyou] = useState(false);
   const [followers,setfollowers] = useState([]);
   const [infoarray,setinfoarray] = useState([]);
   const [myaddress,setmyaddress] = useState("");
@@ -28,6 +29,9 @@ function Follow({address}){
           setfollowclick(false);
       } else {
           setfollowclick(true);
+      }
+      if(myaddress === address){
+        setyou(true);
       }
     }, [followers,address]);
   const clicked = () => {
@@ -61,8 +65,9 @@ function Follow({address}){
         console.error('Error updating data:', error);
     }
   };
-  return (
-  <div className='follow' onClick={clicked}>
+  return (<>
+    {you ? (<div className='follow'><p className='first'>You</p></div>):(
+      <div className='follow' onClick={clicked}>
         {followclick ? (
           <div className='first'>
             follow
@@ -72,7 +77,8 @@ function Follow({address}){
             following
           </div>
         )}
-  </div>
-  );
+      </div>
+    )}
+  </>);
 }
 export default Follow;

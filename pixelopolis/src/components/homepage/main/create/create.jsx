@@ -18,9 +18,9 @@ const Collectionitem = ({ imgg, name1,isactive,onClick}) => {
 const Create = ({address}) => {
     const [connect, setconnect] = useState(false);
     const [createnftclicked,setcreatenftclicked] = useState(false);
-    const [imageuploaded,setimageuploaded] = useState(false); // Changed to false
-    const [contractmade,setcontractmade] = useState(false); // Changed to false
-    const [minting,setminting] = useState(false); // Changed to false
+    const [imageuploaded,setimageuploaded] = useState(false);
+    const [contractmade,setcontractmade] = useState(false);
+    const [minting,setminting] = useState(false);
     const [randomnumber, setRandomNumber] = useState(null);
     const address1 = (address.substring(0, 6) + "..." + address.substring(36, 42)).toUpperCase();
     const [value, setValue] = useState(0);
@@ -123,7 +123,8 @@ const Create = ({address}) => {
             navigate("/Account");
         }, 5000);
     };
-    const mintdelay = () => {
+
+    const mintdelay = () => {   
         setTimeout(() => {
             setminting(true);
             closeit();
@@ -140,11 +141,14 @@ const Create = ({address}) => {
             e.preventDefault();
         }
         const formData = new FormData();
+        var imagenamestr = "../pixelopolis/src/image/nft/" + image.name;
+        const imagepath = {imagepath:imagenamestr,_id:nftcontractid};
         formData.append("image", image);
         try {
             await axios.post("http://localhost:5000/upload-nftimage", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+            await axios.post('http://127.0.0.1:5000/process_data', imagepath);
             uploaddelay();
         } catch (error) {
             console.error("Error uploading image:", error);
@@ -186,6 +190,7 @@ const Create = ({address}) => {
                 address: address,
                 likes: [],
                 views: 0,
+                image_features: "",
             };
             if (nftcontractid && names) {
                 setcreatenftclicked(true);
@@ -287,7 +292,7 @@ const Create = ({address}) => {
                             </div>
                             <div className="createcalpriceresult">
                                 <p>You will receive</p>
-                                <p>{calprice} ETH + Gas fee</p>
+                                <p>{calprice} ETH - Gas fee</p>
                             </div>
                         </div>
                         <div className='createlistingsection'>
@@ -302,7 +307,7 @@ const Create = ({address}) => {
                         </div>
                         <div className="createentername">
                             <p>Description</p>
-                            <textarea rows={3} name="description" placeholder='e.g. "It is a huge mountain with minions in it dancing and partying with the monkeys"' required/>
+                            <textarea rows={3} name="description" placeholder='e.g. "It is a huge mountain with minions in it dancing and partying with the monkeys"' />
                         </div>
                         {properties.map((property, index) => (
                             <div key={index} className="createentername">

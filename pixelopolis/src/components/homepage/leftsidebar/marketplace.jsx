@@ -18,7 +18,7 @@ function Marketplace({dashboardclick,virtuallandclick,trendingclick,topclick,das
     <div className='marketplace' >
       <span>Marketplace</span>
       <div className='marketplace1'>
-        <Menu imgg1={imageUrls.m3} imgg2 = {imageUrls.m2} txt="Dashboard" txt1 = "Virtualland" onbuttonclickleft={dashboardclick} onbuttonclickright={virtuallandclick} dash2={dash1}/>
+        <Menu imgg1={imageUrls.m3} imgg2 = {imageUrls.m2} txt="Dashboard" txt1 = "Nft Gallery" onbuttonclickleft={dashboardclick} onbuttonclickright={virtuallandclick} dash2={dash1}/>
         <Menu imgg1={imageUrls.m1} imgg2 = {imageUrls.m4} txt="Trending" txt1 = "Top Creators" onbuttonclickleft={trendingclick} onbuttonclickright={topclick} dash2={dash1}/>
       </div>
     </div>

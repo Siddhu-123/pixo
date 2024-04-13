@@ -10,13 +10,11 @@ import Trendtable from './trendcollections/trendtable';
 import Navop from './navop';
 import '../../../css files/dashboard/main.css';
 
-export const Main = ({ dash, nvoclick, address }) => {
-    const dash1 = parseInt(localStorage.getItem('dash')) || 1;
-    
+export const Main = ({ dash, nvoclick, address }) => {    
     let content;
     if (dash === 1) {
         content = <Dashboard />;
-    } else if (dash === 2 || dash1 === 2) {
+    } else if (dash === 2) {
         content = <Virtualland />;
     } else if (dash === 3) {
         content = <Create address={address} />;

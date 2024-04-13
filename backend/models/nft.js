@@ -22,6 +22,7 @@ const nftschema = new mongoose.Schema({
     address: String,
     likes: [String],
     views: Number,
+    image_features: String,
     __v: { type: Number, default: 0 }
 });
 

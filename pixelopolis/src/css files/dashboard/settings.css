@@ -1,10 +1,12 @@
-.mainsettings{
+.mainsettings1,.mainsettings{
     width:99.4%;
     height: max-content;
     display: flex;
     justify-content: center;
     transition: all 1000ms ease;
+    /* animation: slideup 1s ease; */
 }
+
 .settings{
     display: flex;
     flex-direction: column;
@@ -187,4 +189,9 @@ a{
 }
 .cell5{
     grid-area: 1/10/2/12;
+}
+
+.image1{
+    width: 5rem;
+    border-radius: 1rem;
 }

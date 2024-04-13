@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react';
+import { debounce } from 'lodash';
 import '../../css files/accpage.css';
 import { useParams } from 'react-router-dom';
 import Footer from '../homepage/main/dashboard/footer';
@@ -240,6 +241,41 @@ const Ownerpage = ({address}) =>{
     const handleFilterChange = (newValue) => {
         setfilter(newValue);
     };
+    ////////////////////////////////////////////////////////////////
+    const [nftsdata2, setnftsdata2] = useState(nftsdata1);
+    const [colldata2, setcolldata2] = useState(colldata1);
+    const [listednftdata2,setlistednftdata2] = useState(listednftdata1);
+    const [query, setquery] = useState('');
+
+    const handlesearchinput = (e) => {
+        setquery(e.target.value);
+        handleSearch(e.target.value , nftsdata1,setnftsdata2);
+        handleSearch1(e.target.value , colldata1,setcolldata2);
+        handleSearch(e.target.value , listednftdata1,setlistednftdata2);
+    };
+
+    const handleSearch = (inputValue,data,set) => {
+        const filteredResults = data.filter(obj => {
+            return (
+                obj.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+                obj.description.toLowerCase().includes(inputValue.toLowerCase()) ||
+                obj.traits.toLowerCase().includes(inputValue.toLowerCase())
+            );
+        });
+        set(filteredResults);
+    };
+    const handleSearch1 = (inputValue,data,set) => {
+        const filteredResults = data.filter(obj => {
+            return (
+                obj.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+                obj.description.toLowerCase().includes(inputValue.toLowerCase())
+            );
+        });
+        set(filteredResults);
+    };
+    
+    const debouncedHandleSearchInput = debounce(handlesearchinput, 500);
+    ////////////////////////////////////////////////////////////////
     const address1 = (id2.substring(0, 6) + "..." + id2.substring(36, 42)).toUpperCase();
     const [followclick, setfollowclick] = useState(null);
 
@@ -331,7 +367,7 @@ const Ownerpage = ({address}) =>{
                         <div className="operationpanel">
                         { imgclick ? (
                             <div className='searchbaricon'>
-                            <input type='text' placeholder='Search items, collections and accounts'></input>        
+                            <input type='text' placeholder='Search items, collections and accounts' onChange={debouncedHandleSearchInput}></input>        
                             <svg onClick={close} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                 <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -351,7 +387,7 @@ const Ownerpage = ({address}) =>{
                                 </div>
                                 <div className="searchitems">
                                     <svg onClick={ifclicked} viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.0703 20.0444C21.9769 18.1313 23.1556 15.4922 23.1556 12.5778C23.1556 6.73583 18.4197 2 12.5778 2C6.73583 2 2 6.73583 2 12.5778C2 18.4197 6.73583 23.1556 12.5778 23.1556C15.5053 23.1556 18.1551 21.9663 20.0703 20.0444ZM20.0703 20.0444L28.5 28.5" stroke="black" stroke-width="3" stroke-linecap="round"/></svg>
-                                    <input type='text' placeholder='Search items'></input>        
+                                    <input type='text' placeholder='Search items' onChange={debouncedHandleSearchInput}></input>        
                                 </div>
                                 <Filters onFilterChange={handleFilterChange}/>
                             </>
@@ -359,43 +395,82 @@ const Ownerpage = ({address}) =>{
                         </div>
                         <div className="nftsacc">
                             {(activeIndex === 0 || activeIndex === 2) ? (<>
-                                {colldata1.map((item, index) => (
-                                    <Cardacc
-                                        key={index}
-                                        imgg={item.image}
-                                        name={item.name}
-                                        floor={item.floor}
-                                        tolvol={item.tolvol}
-                                        id={item._id}
-                                        address={address}
-                                        decide={decide}
-                                    />
-                                ))}
+                                {query ? (<>
+                                    {colldata2.map((item, index) => (
+                                        <Cardacc
+                                            key={index}
+                                            imgg={item.image}
+                                            name={item.name}
+                                            floor={item.floor}
+                                            tolvol={item.tolvol}
+                                            id={item._id}
+                                            address={address}
+                                        />
+                                    ))}
+                                </>):(<>
+                                    {colldata1.map((item, index) => (
+                                        <Cardacc
+                                            key={index}
+                                            imgg={item.image}
+                                            name={item.name}
+                                            floor={item.floor}
+                                            tolvol={item.tolvol}
+                                            id={item._id}
+                                            address={address}
+                                        />
+                                    ))}
+                                </>)}
                             </>):(<></>)}
                             {(activeIndex === 0 || activeIndex === 1) ? (<>
-                            {nftsdata1.map((item, index) => (
+                            {query ? (<>
+                                {nftsdata2.map((item, index) => (
                                 <NFTSacc
                                     key={index}
                                     imgg={item.image}
                                     name={item.name}
                                     dis={item.description}
-                                    id={item._id}
                                     address={address}
-                                    decide={decide}
+                                    id={item._id}
                                 />
-                            ))}</>):(<></>)}
+                            ))}
+                            </>):(<>
+                                {nftsdata1.map((item, index) => (
+                                <NFTSacc
+                                    key={index}
+                                    imgg={item.image}
+                                    name={item.name}
+                                    dis={item.description}
+                                    address={address}
+                                    id={item._id}
+                                />
+                            ))}
+                            </>)}
+                            </>):(<></>)}
                             {(activeIndex === 3) ? (<>
-                            {listednftdata1.map((item, index) => (
+                            {query? (<>
+                                {listednftdata2.map((item, index) => (
                                 <NFTSacc
                                     key={index}
                                     imgg={item.image}
                                     name={item.name}
                                     dis={item.description}
-                                    id={item._id}
                                     address={address}
-                                    decide={decide}
+                                    id={item._id}
                                 />
-                            ))}</>):(<></>)}
+                            ))}
+                            </>):(<>
+                                {listednftdata1.map((item, index) => (
+                                <NFTSacc
+                                    key={index}
+                                    imgg={item.image}
+                                    name={item.name}
+                                    dis={item.description}
+                                    address={address}
+                                    id={item._id}
+                                />
+                            ))}
+                            </>)}
+                            </>):(<></>)}
                         </div>
                     </div>
                 </div>

@@ -51,19 +51,10 @@ const Favorites = ({address}) =>{
                 setcombineddata(flattenedCollections);
                 setdecide(true);
 
-                var lasttransaction1 = [];
-                var lasttransaction2 = [];
                 const nftslist = [];
                 nftsdata.forEach(nft => {
                     const collection = collectionsData.find(item => item._id === nft.collectionid);
-                    nft.transaction.forEach(transaction =>{
-                        if(transaction.event === "listing"){
-                            lasttransaction1 = transaction;
-                        }else if(transaction.event === "sale"){
-                            lasttransaction2 = transaction;
-                        }
-                    });
-                    if (!(lasttransaction1.from === address || lasttransaction2.to === address) && (selectedCategory === "All" || collection.category === selectedCategory)) {
+                    if ((nft.address !== address) && (selectedCategory === "All" || collection.category === selectedCategory)) {
                         if (nft.likes.includes(address)) {
                             nftslist.push(nft);
                         }
