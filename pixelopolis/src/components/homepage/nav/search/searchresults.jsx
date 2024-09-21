@@ -56,35 +56,34 @@ const Searchresults = ({query}) => {
             const result = extractCharacteristics(query);
             setCharacteristics(result);
             const filteredNFTs = allnftdata.filter(nft => {
-                const nameMatches = nft.name.toLowerCase().includes(query.toLowerCase());
-                const descriptionMatches = nft.description.toLowerCase().includes(query.toLowerCase());
-                const imageFeaturesMatch = nft.image_features.toLowerCase().includes(query.toLowerCase()) || nft.image_features.toLowerCase().includes(characteristics);
-                const traitsMatch = nft.traits.toLowerCase().includes(query.toLowerCase());
-                
+                const nameMatches = nft.name?.toLowerCase().includes(query.toLowerCase()) || false;
+                const descriptionMatches = nft.description?.toLowerCase().includes(query.toLowerCase()) || false;
+                const imageFeaturesMatch = nft.image_features?.toLowerCase().includes(query.toLowerCase()) || nft.image_features?.toLowerCase().includes(characteristics) || false;
+                const traitsMatch = nft.traits?.toLowerCase().includes(query.toLowerCase()) || false;
+    
                 return nameMatches || descriptionMatches || imageFeaturesMatch || traitsMatch;
             });
             const filteredCollections = allcolldata.filter(coll => {
-                return coll.name.toLowerCase().includes(query.toLowerCase()) ||
-                    coll.description.toLowerCase().includes(query.toLowerCase());
-            });        
-            const filteredUsers = alluserdata.filter(user => {
-                return user.name.toLowerCase().includes(query.toLowerCase()) ||
-                    user.username.toLowerCase().includes(query.toLowerCase()) || 
-                    user.email.toLowerCase().includes(query.toLowerCase()) ||
-                    user.instagram.toLowerCase().includes(query.toLowerCase()) ||
-                    user.twitter.toLowerCase().includes(query.toLowerCase());
+                return coll.name?.toLowerCase().includes(query.toLowerCase()) ||
+                    coll.description?.toLowerCase().includes(query.toLowerCase()) || false;
             });
-            
-
+            const filteredUsers = alluserdata.filter(user => {
+                return user.name?.toLowerCase().includes(query.toLowerCase()) ||
+                    user.username?.toLowerCase().includes(query.toLowerCase()) || 
+                    user.email?.toLowerCase().includes(query.toLowerCase()) ||
+                    user.instagram?.toLowerCase().includes(query.toLowerCase()) ||
+                    user.twitter?.toLowerCase().includes(query.toLowerCase()) || false;
+            });
+    
             setSearchResults({
                 nfts: filteredNFTs,
                 collections: filteredCollections,
                 users: filteredUsers
             });
-
         };
         handleSearch();
     }, [query]);
+    
 
     return (<>
         {query ? (<>
