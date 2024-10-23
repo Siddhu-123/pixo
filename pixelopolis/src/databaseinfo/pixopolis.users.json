@@ -1,0 +1,61 @@
+[{
+  "_id": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "name": "Siddhu Crypto",
+  "username": "siddhurockz",
+  "profileimage": "figl (7).jpg",
+  "backgroundimage": "figl (37).jpg",
+  "date": {
+    "$date": "2024-03-30T10:22:00.000Z"
+  },
+  "bio": "life is beautiful just enjot it and live ur life ",
+  "following": [
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80"
+  ],
+  "followers": [
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80"
+  ],
+  "email": "balanagusiddhartha@gmail.com",
+  "instagram": "Shot_bysiddhu",
+  "twitter": "siddhu",
+  "website": "https://www.behance.net/gallery/184968613/my-UIUX-portfolio",
+  "collections": [
+    "0xe2B3EFf07bcf2fB5018EBf4DF36E4fFEd2b3Fa30",
+    "0x3F0b826c9D349FdB2F716d9df8d5BE83802d89cD",
+    "0xB59044544B70be9f63d0AC75c76Cc142fB399641",
+    "0x198A4154FAC920b8FC83f44D8380B839370A50a0",
+    "0x524312cF70e96De511d66eCAC8C8684Ff38fb34A",
+    "23102024122925-0x5f238adf2594cf2c77ead786181aeaccc27c1c42"
+  ],
+  "__v": 0,
+  "cart": []
+},
+{
+  "_id": "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+  "name": "crazy guy",
+  "username": "crazyguy",
+  "profileimage": "fig (37).jpg",
+  "backgroundimage": "fig (19).jpg",
+  "date": {
+    "$date": "2024-04-03T18:30:00.000Z"
+  },
+  "bio": "Meet Jack, the eccentric maverick with a penchant for chaos. A whirlwind of unpredictable antics, he dances to his own offbeat rhythm, leaving a trail of laughter and confusion in his wake. Unapologetically unconventional, Jack defies definition at every turn.",
+  "following": [
+    "0x5f238adf2594cf2c77ead786181aeaccc27c1c42"
+  ],
+  "followers": [
+    "0x5f238adf2594cf2c77ead786181aeaccc27c1c42"
+  ],
+  "email": "crazyguy2024@gmail.com",
+  "instagram": "crazyguy123",
+  "twitter": "crazyguy3535",
+  "website": "https://www.behance.net/gallery/184968613/crazyguyinovation",
+  "collections": [
+    "0x2c8BA0b2D92Eb07Bb1d9032d50d272e5B10899A8",
+    "0x840F73fD6b815182DC966c978d1Bf977D8f818c2",
+    "0x8bcceA8FcFc293eC74e55b7fe8A87D8288128960",
+    "0x0a009770DF89AcDE74Ed93B78e15281E69f769FD",
+    "0xE59476B10d1511e8A71E88Cc7dD9BdED0831F2E3"
+  ],
+  "__v": 0,
+  "cart": []
+}]

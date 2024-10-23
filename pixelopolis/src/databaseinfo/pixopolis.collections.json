@@ -1,0 +1,201 @@
+[{
+  "_id": "0x2c8BA0b2D92Eb07Bb1d9032d50d272e5B10899A8",
+  "name": "sunset",
+  "image": "sunset.jpg",
+  "date": {
+    "$date": "2024-04-16T15:46:51.836Z"
+  },
+  "description": "Golden hues melt into the horizon, painting the sky in a symphony of oranges and pinks. Wisps of clouds dance in the fading light, as the sun bids farewell to the day. A serene moment captured, a timeless beauty preserved. Own a piece of nature's masterpiece with this stunning sunset NFT.",
+  "category": "Art",
+  "address": "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+  "likes": [
+    "0x5f238adf2594cf2c77ead786181aeaccc27c1c42"
+  ],
+  "nfts": [
+    "0xc48c7a88621ba4bc99762f41c71419a166a3e3b5f2491a32f39d751996ef2da7",
+    "0x9f900da6cca1fc9e7a3ae7855cf587bde82c4e9fbd3ab67438b2c0b9b2511f75"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0x840F73fD6b815182DC966c978d1Bf977D8f818c2",
+  "name": "imaginary land",
+  "image": "land.jpg",
+  "date": {
+    "$date": "2024-04-16T16:01:07.234Z"
+  },
+  "description": "Step into the boundless realm of Imaginary Landin, where digital dreams come to life! Our NFT marketplace offers a vibrant canvas for creators to showcase their unique artworks and collectors to discover exclusive treasures. Join our community and embark on a journey of endless creativity and innovation.",
+  "category": "Digital land",
+  "address": "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+  "likes": [
+    "0x5f238adf2594cf2c77ead786181aeaccc27c1c42"
+  ],
+  "nfts": [
+    "0xe7b6b9e35ace5b921a28ecc1f9ea2e9813950d47a5c811cab5dd8d71de4b90e5",
+    "0xc9674c6f62e31af5b6a88a76eb53d2ebdbe8523f3124c92074df12d9306a6dad"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0xe2B3EFf07bcf2fB5018EBf4DF36E4fFEd2b3Fa30",
+  "name": "queens",
+  "image": "figl (21).jpg",
+  "date": {
+    "$date": "2024-04-17T17:34:47.988Z"
+  },
+  "description": "Discover regal artistry in Queens, an NFT marketplace showcasing digital sovereignty. Explore a realm where creativity reigns supreme, offering a majestic array of unique tokens. From visionary portraits to immersive landscapes, each creation is a testament to the diverse talents of our global community. Rule your digital kingdom with Queens.",
+  "category": "Avatar",
+  "address": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "likes": [
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80"
+  ],
+  "nfts": [
+    "0xa52daddb42c56f826cabe25c67e2f088f2fb693b1a86274ceabb7610957580f9",
+    "0xa317cd654d4ee019e782f2519c88e87701d94005252d6f5436cc761e56116a52"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0x3F0b826c9D349FdB2F716d9df8d5BE83802d89cD",
+  "name": "trees",
+  "image": "pinkforest.jpg",
+  "date": {
+    "$date": "2024-04-18T19:45:50.606Z"
+  },
+  "description": "Explore nature's timeless guardians in this NFT collection celebrating the majesty of trees. Each digital artwork captures the essence of different species, from the towering redwoods to the delicate cherry blossoms. Own a piece of ecological heritage and support conservation efforts with these unique, blockchain-verified tokens.",
+  "category": "Music",
+  "address": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "likes": [
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80"
+  ],
+  "nfts": [
+    "0x3e6fa5108a497bf4834fd8fa6e91bf115a48e4bfdb07a717d0aa6b0dc4b6a296",
+    "0xd2a4aaef29fabb8c33481472a0acdfb371404e0d3b0adedd4e8081e576095354",
+    "0x05e23d9e9df38f6f1cf9663aa48677d143afe2bdf69acb19cb168d3cb2485095"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0xB59044544B70be9f63d0AC75c76Cc142fB399641",
+  "name": "mushroom trees",
+  "image": "mushroom.jpg",
+  "date": {
+    "$date": "2024-04-19T06:00:54.779Z"
+  },
+  "description": "Explore the surreal world of Mushroom Trees, where whimsical fungi tower like ancient giants. Each NFT captures the ethereal beauty of these enchanted forests, blending imagination with nature. Own a piece of this fantastical realm and let your imagination roam in the depths of Mushroom Trees' unique digital landscape.",
+  "category": "Digital land",
+  "address": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "likes": [],
+  "nfts": [
+    "0x0ea1fa35274fe7def1365cd101353f7616288af3e8bf6e0eb74ce1139220da50",
+    "0x2f791a58d7f00657ff22e48bdf5e85a6b72d3514503754dd77b374df1b4cd30e",
+    "0xba94726eb6c6e48d8200150fa551598696489d9d048dcada8d76f26819eef39f",
+    "0xed40a0a053937bbbd2201644f59052978d17b933ea1316a3b352ad3ba1b3dc5a"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0x198A4154FAC920b8FC83f44D8380B839370A50a0",
+  "name": "futuristic trees",
+  "image": "figl (27).jpg",
+  "date": {
+    "$date": "2024-04-22T10:48:31.745Z"
+  },
+  "description": "\"Futuristic Trees\" collection features avant-garde arboreal designs, blending organic forms with cutting-edge technology. These innovative sculptures reimagine traditional trees, incorporating elements like LEDs, holographic projections, and biomimicry. Each piece evokes a harmonious vision of nature and innovation, challenging conventional perceptions of greenery in the future landscape.",
+  "category": "Generative AI",
+  "address": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "likes": [
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+    "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80"
+  ],
+  "nfts": [
+    "0x2d98295724de0c3e8c5a9a39892a0c88aa26b731b11511a5fe48a236f0fba244",
+    "0x0adb9af20ca1d6aa1a8d9f8ea51256deaebb612c87ee5b04376bc092faa05079",
+    "0xa19b7478e81139fe5cc321d00072d9dbfb0d8fbfc47406bb540f704d0272826c",
+    "0xeb5d9f55a9f9a691c7c5cbc192726f98618923bf068e57af9725b86056f6346b"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0x524312cF70e96De511d66eCAC8C8684Ff38fb34A",
+  "name": "Phoenix Gate",
+  "image": "gate.jpg",
+  "date": {
+    "$date": "2024-04-22T11:09:01.214Z"
+  },
+  "description": "\"Phoenix Gate\" collection epitomizes elegance and resilience, drawing inspiration from the mythical bird's symbolism of rebirth. Each piece features intricate designs resembling fiery feathers, crafted from durable materials symbolizing resilience. Embodying both strength and beauty, these items offer a transformative touch to any space, igniting a sense of renewal and vitality.\n\n\n\n\n\n\n",
+  "category": "Art",
+  "address": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "likes": [],
+  "nfts": [
+    "0x10f91a00079a47c61c757be7e15f90fd8a95f075a8589759f689f98073fcac93",
+    "0x63c101ad445f0b302ea857db3b943e1362b98f9c8f7b62af21f9efccbea3362e",
+    "0xfc969ce4972dada9869a3d4df1e41ca5c69f22d81f6abc2bccabdbd329af13fc"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0x8bcceA8FcFc293eC74e55b7fe8A87D8288128960",
+  "name": "cyberbots",
+  "image": "fig (21).jpg",
+  "date": {
+    "$date": "2024-04-23T18:41:00.537Z"
+  },
+  "description": "Experience a virtual arena of mechanized warfare in Cyberbots! Collect, trade, and battle with a diverse array of customizable cybernetic warriors in this NFT-powered universe. Acquire unique bots, upgrade their abilities, and dominate the competition in this futuristic showdown. Enter the digital battlefield and assert your dominance today!",
+  "category": "PFP's",
+  "address": "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+  "likes": [
+    "0x5f238adf2594cf2c77ead786181aeaccc27c1c42"
+  ],
+  "nfts": [
+    "0xa5bb7d225a84ba07941a9f3969948cb56322e146e9fc24ca2aa622b4435b4f49"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0x0a009770DF89AcDE74Ed93B78e15281E69f769FD",
+  "name": "galaxy",
+  "image": "fig (17).jpg",
+  "date": {
+    "$date": "2024-04-23T18:42:46.187Z"
+  },
+  "description": "Embark on an interstellar journey through our NFT marketplace, where digital galaxies await exploration. Each unique piece is a cosmic masterpiece, crafted by visionary artists from across the cosmos. Dive into a universe of infinite creativity, own a piece of the galaxy, and become a celestial collector like no other.",
+  "category": "Gaming",
+  "address": "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+  "likes": [],
+  "nfts": [
+    "0xb2793221eea673b34d56a72c6a8704137a8d40e0d576ba7a102dbe933b2e4d32"
+  ],
+  "__v": 0
+},
+{
+  "_id": "0xE59476B10d1511e8A71E88Cc7dD9BdED0831F2E3",
+  "name": "street",
+  "image": "land1.jpg",
+  "date": {
+    "$date": "2024-04-23T18:59:06.648Z"
+  },
+  "description": "Step into a digital labyrinth of boundless creativity, where pixels dance to the rhythm of imagination. Wander through our virtual streets adorned with the rarest digital treasures. Each corner unveils a new masterpiece, a testament to the fusion of art and technology. Welcome to the NFT Wonderland, where dreams are minted.",
+  "category": "Memberships",
+  "address": "0x6887e2f0fa6508a161ececf8697cb1a5ac76cf80",
+  "likes": [],
+  "nfts": [
+    "0xdf617e80600acd9678423f5e85255a053853deb6ffabe3ba782e6ee399cd72e5"
+  ],
+  "__v": 0
+},
+{
+  "_id": "23102024122925-0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "name": "Roboland Gate",
+  "image": "figl (10).jpg",
+  "date": {
+    "$date": "2024-10-23T06:59:42.012Z"
+  },
+  "description": "Roboland Gate is the monumental entrance to a futuristic world where robots and AI technologies reign supreme. Standing tall with sleek, metallic arches, the gate shines with a polished silver surface, reflecting the light of the modern cityscape beyond it. Embedded in its structure are intricate circuits and glowing neon lines that pulse rhythmically, hinting at the energy and intelligence that powers the land beyond. Towering robotic statues guard the entrance, each one showcasing a different type of advanced technology—some humanoid, others more mechanical in design, with rotating gears and glowing eyes that follow the visitors' movements.",
+  "category": "PFP's",
+  "address": "0x5f238adf2594cf2c77ead786181aeaccc27c1c42",
+  "likes": [],
+  "nfts": [],
+  "__v": 0
+}]
