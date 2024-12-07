@@ -10,7 +10,7 @@ function Follow({address}){
     try {
       const myaddress = await window.ethereum.request({ method: 'eth_requestAccounts' });
       setmyaddress(myaddress[0]);
-      const userInfoResponse = await axios.get('http://localhost:5000/userinfo');
+      const userInfoResponse = await axios.get('http://localhost:5001/userinfo');
       const userInfoData = userInfoResponse.data.data;
       const infoarray = userInfoData.find(item => item._id === address);
       setinfoarray(infoarray);
@@ -47,7 +47,7 @@ function Follow({address}){
   const followinfo = {id: address,address: myaddress};
   const followbutton = async (e) => {
     try {
-      const response = await axios.post('http://localhost:5000/follow', followinfo);
+      const response = await axios.post('http://localhost:5001/follow', followinfo);
       if (response.data.message === 'success') {
           fetchData();
       }
@@ -57,7 +57,7 @@ function Follow({address}){
   };
   const unfollowbutton = async (e) => {
     try {
-      const response = await axios.post('http://localhost:5000/unfollow', followinfo);
+      const response = await axios.post('http://localhost:5001/unfollow', followinfo);
       if (response.data.message === 'success') {
       fetchData();
       }

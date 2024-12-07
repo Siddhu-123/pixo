@@ -35,7 +35,7 @@ const Collectionpage = ({address}) => {
     useEffect(() => {
         const fetchNftData = async () => {
             try {
-                const collectionsResponse = await axios.get('http://localhost:5000/collection');
+                const collectionsResponse = await axios.get('http://localhost:5001/collection');
                 const collectionsData = collectionsResponse.data.data;
                 const collection = collectionsData.find(collection => collection._id === name);
                 if (collection) {
@@ -43,13 +43,13 @@ const Collectionpage = ({address}) => {
                     const collnftslist = collection.nfts;
                     setcollimage(collection.image);
 
-                    const nftsResponse = await axios.get('http://localhost:5000/nfts');
+                    const nftsResponse = await axios.get('http://localhost:5001/nfts');
                     const nftsData = nftsResponse.data.data;
                     setallnftdata(nftsData);
                     const addressNftsMap = nftsData.filter(nft => collnftslist.includes(nft._id));
                     setnftdata(addressNftsMap);
 
-                    const nftuser = await axios.get('http://localhost:5000/userinfo');
+                    const nftuser = await axios.get('http://localhost:5001/userinfo');
                     const userData = nftuser.data.data;
                     setusersdata(userData);
                     const user = userData.find(item => item._id === collection.address);

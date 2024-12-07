@@ -56,7 +56,7 @@ const Create = ({address}) => {
         if(address){
             setconnect(true);
         }
-        axios.get('http://localhost:5000/collection')
+        axios.get('http://localhost:5001/collection')
             .then(response => {
                 const data = response.data.data;
                 const addressCollectionsMap = [];
@@ -145,10 +145,10 @@ const Create = ({address}) => {
         const imagepath = {imagepath:imagenamestr,_id:nftcontractid};
         formData.append("image", image);
         try {
-            await axios.post("http://localhost:5000/upload-nftimage", formData, {
+            await axios.post("http://localhost:5001/upload-nftimage", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-            await axios.post('http://127.0.0.1:5000/process_data', imagepath);
+            await axios.post('http://127.0.0.1:5001/process_data', imagepath);
             uploaddelay();
         } catch (error) {
             console.error("Error uploading image:", error);
@@ -194,7 +194,7 @@ const Create = ({address}) => {
             };
             if (nftcontractid && names) {
                 setcreatenftclicked(true);
-                await axios.post('http://localhost:5000/createnft', formData);
+                await axios.post('http://localhost:5001/createnft', formData);
                 contractdelay();
             }
         } catch (error) {

@@ -15,7 +15,7 @@ const Favorites = ({address}) =>{
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const collectionsResponse = await axios.get('http://localhost:5000/collection');
+                const collectionsResponse = await axios.get('http://localhost:5001/collection');
                 const collectionsData = collectionsResponse.data.data;
                 const addressCollectionsMap = [];
     
@@ -27,7 +27,7 @@ const Favorites = ({address}) =>{
                     }
                 });
                 
-                const nftsResponse = await axios.get('http://localhost:5000/nfts');
+                const nftsResponse = await axios.get('http://localhost:5001/nfts');
                 const nftsdata = nftsResponse.data.data;
                 
                 const flattenedCollections = [];

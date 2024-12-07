@@ -33,9 +33,9 @@ const Toptable = () => {
       const fetchData = async () => {
         try {
             const address = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            const collResponse = await axios.get('http://localhost:5000/collection');
+            const collResponse = await axios.get('http://localhost:5001/collection');
             const collData = collResponse.data.data;
-            const nftResponse = await axios.get('http://localhost:5000/nfts');
+            const nftResponse = await axios.get('http://localhost:5001/nfts');
             const nftData = nftResponse.data.data;
             if(address[0]){
                 var foundCollData = collData.filter(item => item.address !== address[0]);

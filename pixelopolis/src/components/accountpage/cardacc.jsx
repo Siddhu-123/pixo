@@ -28,7 +28,7 @@ const Cardacc = ({imgg,name,floor,tolvol,id,decide}) => {
     useEffect(() => {
         const fetchNftData = async () => {
           try {
-            const nftcoll = await axios.get('http://localhost:5000/collection');
+            const nftcoll = await axios.get('http://localhost:5001/collection');
             const collData = nftcoll.data.data;
             const collection = collData.find(item => item._id === id);
             setlikes(collection.likes);
@@ -59,14 +59,14 @@ const Cardacc = ({imgg,name,floor,tolvol,id,decide}) => {
     }
     const likebutton = async (e) => {
       try {
-          await axios.post('http://localhost:5000/colllike', likeinfo);
+          await axios.post('http://localhost:5001/colllike', likeinfo);
       } catch (error) {
           console.error('Error updating data:', error);
       }
     };
     const notlikebutton = async (e) => {
       try {
-          await axios.post('http://localhost:5000/collnotlike', likeinfo);
+          await axios.post('http://localhost:5001/collnotlike', likeinfo);
       } catch (error) {
           console.error('Error updating data:', error);
       }

@@ -12,14 +12,14 @@ const Cartpage = ({close,address}) =>{
       };
     const fetchData = async () => {
         try {
-            const userslist = await axios.get('http://localhost:5000/userinfo');
+            const userslist = await axios.get('http://localhost:5001/userinfo');
             const users = userslist.data.data;
             const foundUserData = users.find(item => item._id === address);
             if (foundUserData) {
                 setuserdata(foundUserData);
             }
 
-            const nftslist = await axios.get('http://localhost:5000/nfts');
+            const nftslist = await axios.get('http://localhost:5001/nfts');
             const nfts = nftslist.data.data;
             if (nfts) {
                 setnftdata(nfts);
@@ -58,7 +58,7 @@ const Cartpage = ({close,address}) =>{
     const cartinfo = {address: address};
     const eraseall = async (e) => {
         try {
-            const response = await axios.post('http://localhost:5000/removeallcart', cartinfo);
+            const response = await axios.post('http://localhost:5001/removeallcart', cartinfo);
             if (response.data.message === 'removed') {
                 setupdate(Math.random());
             }

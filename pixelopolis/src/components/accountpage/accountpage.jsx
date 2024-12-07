@@ -41,7 +41,7 @@ const Accountpage = ({address}) =>{
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userInfoResponse = await axios.get('http://localhost:5000/userinfo');
+                const userInfoResponse = await axios.get('http://localhost:5001/userinfo');
                 const userInfoData = userInfoResponse.data.data;
                 var userlist = [];
                 userInfoData.forEach(user => {
@@ -51,7 +51,7 @@ const Accountpage = ({address}) =>{
                 });
                 setinfoarray(userlist);
 
-                const collectionsResponse = await axios.get('http://localhost:5000/collection');
+                const collectionsResponse = await axios.get('http://localhost:5001/collection');
                 const collectionsData = collectionsResponse.data.data;
                 const addressCollectionsMap = [];
                 collectionsData.forEach(collection => {
@@ -61,7 +61,7 @@ const Accountpage = ({address}) =>{
                 });
                 setcombineddata(addressCollectionsMap);
 
-                const nftsResponse = await axios.get('http://localhost:5000/nfts');
+                const nftsResponse = await axios.get('http://localhost:5001/nfts');
                 const nftsData = nftsResponse.data.data;
                 setallnftdata(nftsData);
                 const flattenedNfts = [];

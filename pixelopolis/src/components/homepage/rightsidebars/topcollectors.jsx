@@ -11,7 +11,7 @@ function Trencoll({trendingclick}){
     const fetchData = async () => {
       try {
         const address = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const nftsResponse = await axios.get('http://localhost:5000/userinfo');
+        const nftsResponse = await axios.get('http://localhost:5001/userinfo');
         const nftsData = nftsResponse.data.data;
         if(address[0]){
           var foundUserData = nftsData.filter(item => item._id !== address[0]);
@@ -19,7 +19,7 @@ function Trencoll({trendingclick}){
         else{
           var foundUserData = nftsData;
         }
-        const collResponse = await axios.get('http://localhost:5000/collection');
+        const collResponse = await axios.get('http://localhost:5001/collection');
         const collData = collResponse.data.data;
         const usersdata = [];
         foundUserData.forEach(user => {

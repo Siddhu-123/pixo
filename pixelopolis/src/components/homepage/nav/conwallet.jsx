@@ -47,7 +47,7 @@ const Conwallet = () => {
         collections: [],
         cart: [],
       };
-      await axios.post('http://localhost:5000/createuser',formdata);
+      await axios.post('http://localhost:5001/createuser',formdata);
     }
     catch (error) {
       console.error('Error:', error);

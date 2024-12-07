@@ -8,10 +8,10 @@ const Collcard = ({id,imgg,name}) => {
   useEffect(() => {
     const fetchData = async () => {
     try {
-        const nftsResponse = await axios.get('http://localhost:5000/nfts');
+        const nftsResponse = await axios.get('http://localhost:5001/nfts');
         const nftsData = nftsResponse.data.data;
 
-        const collResponse = await axios.get('http://localhost:5000/collection');
+        const collResponse = await axios.get('http://localhost:5001/collection');
         const collData = collResponse.data.data;
         const addressCollectionsMap = collData.find(item => item._id === id);
 
@@ -31,7 +31,7 @@ const Collcard = ({id,imgg,name}) => {
         temp["tolvol"] = Number(tolvol.toFixed(4));
         setAllCollData(temp);
 
-        const userResponse = await axios.get('http://localhost:5000/userinfo');
+        const userResponse = await axios.get('http://localhost:5001/userinfo');
         const userData = userResponse.data.data;
         const userdata = userData.find(item => item._id === addressCollectionsMap.address);
         setAllUserData(userdata);

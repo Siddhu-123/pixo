@@ -29,18 +29,18 @@ const CardDetails = ({address}) => {
   useEffect(() => {
   const fetchData = async () => {
     try {
-      const nftsResponse = await axios.get('http://localhost:5000/nfts');
+      const nftsResponse = await axios.get('http://localhost:5001/nfts');
       const nftsData = nftsResponse.data.data;
       setallnftdata(nftsData);
       const nft = nftsData.find(item => item._id === id);
       setnftdata(nft);
 
-      const nftcoll = await axios.get('http://localhost:5000/collection');
+      const nftcoll = await axios.get('http://localhost:5001/collection');
       const collData = nftcoll.data.data;
       const collection = collData.find(item => item._id === nft.collectionid);
       setcolldata(collection);
 
-      const nftuser = await axios.get('http://localhost:5000/userinfo');
+      const nftuser = await axios.get('http://localhost:5001/userinfo');
       const userData = nftuser.data.data;
       var user = userData.find(item => item._id === nft.address);
       setuserdata(user);
@@ -224,7 +224,7 @@ const CardDetails = ({address}) => {
 
   const fetchViewCount = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/nfts');
+      const response = await axios.get('http://localhost:5001/nfts');
       const nftsData = response.data.data;
       const nft = nftsData.find(item => item._id === id);
       setViewCount(nft.views);
@@ -236,7 +236,7 @@ const CardDetails = ({address}) => {
   const incrementViewCount = async () => {
     try {
       setViewCount(prevCount => prevCount + 1);
-      await axios.post('http://localhost:5000/updateviewcount', { views: viewCount + 1 ,_id: id});
+      await axios.post('http://localhost:5001/updateviewcount', { views: viewCount + 1 ,_id: id});
     } catch (error) {
       console.error('Error updating view count:', error);
     }
@@ -260,14 +260,14 @@ const CardDetails = ({address}) => {
   }
   const likebutton = async (e) => {
     try {
-        await axios.post('http://localhost:5000/like', likeinfo);
+        await axios.post('http://localhost:5001/like', likeinfo);
     } catch (error) {
         console.error('Error updating data:', error);
     }
   };
   const notlikebutton = async (e) => {
     try {
-        await axios.post('http://localhost:5000/notlike', likeinfo);
+        await axios.post('http://localhost:5001/notlike', likeinfo);
     } catch (error) {
         console.error('Error updating data:', error);
     }
@@ -289,14 +289,14 @@ const CardDetails = ({address}) => {
   }
   const addtocart = async (e) => {
     try {
-        await axios.post('http://localhost:5000/addtocart', cartinfo);
+        await axios.post('http://localhost:5001/addtocart', cartinfo);
     } catch (error) {
         console.error('Error updating data:', error);
     }
   };
   const removefromcart = async (e) => {
     try {
-        await axios.post('http://localhost:5000/removefromcart', cartinfo);
+        await axios.post('http://localhost:5001/removefromcart', cartinfo);
     } catch (error) {
         console.error('Error updating data:', error);
     }
@@ -329,7 +329,7 @@ const CardDetails = ({address}) => {
 
   const buynowcontinue = async (e) => {
     try {
-      await axios.post('http://localhost:5000/buynow', buynowform);
+      await axios.post('http://localhost:5001/buynow', buynowform);
       setbuynowsuccess("Listing Successful");
       buynowaftersuccess();
     } catch (error) {
@@ -370,7 +370,7 @@ const CardDetails = ({address}) => {
 
   const offeracceptcontinue = async (e) => {
     try {
-      await axios.post('http://localhost:5000/buynow', offeracceptform);
+      await axios.post('http://localhost:5001/buynow', offeracceptform);
       setofferacceptsuccess("sale Successful");
       offeracceptaftersuccess();
     } catch (error) {
@@ -405,7 +405,7 @@ const CardDetails = ({address}) => {
   };
   const editlistingcontinue = async (e) => {
     try {
-      await axios.post('http://localhost:5000/editlistingcontinue', editlistform);
+      await axios.post('http://localhost:5001/editlistingcontinue', editlistform);
       seteditsuccess("Edit Listing Successful");
       editcloseaftersuccess();
     } catch (error) {
@@ -457,7 +457,7 @@ const CardDetails = ({address}) => {
 
   const listforsalecontinue = async (e) => {
     try {
-      await axios.post('http://localhost:5000/listforsalecontinue', listforsaleform);
+      await axios.post('http://localhost:5001/listforsalecontinue', listforsaleform);
       setlistsalesuccess("Listing Successful");
       listsalecloseaftersuccess();
     } catch (error) {
@@ -479,7 +479,7 @@ const CardDetails = ({address}) => {
   }
   const removelistingsform = async (e) => {
     try {
-      await axios.post('http://localhost:5000/removelistings', removelisting);
+      await axios.post('http://localhost:5001/removelistings', removelisting);
       removelistcloseaftersuccess();
     } catch (error) {
         console.error('Error updating data:', error);
@@ -509,7 +509,7 @@ const CardDetails = ({address}) => {
 
   const offercontinue = async (e) => {
     try {
-      await axios.post('http://localhost:5000/offercontinue', offerform);
+      await axios.post('http://localhost:5001/offercontinue', offerform);
       setoffersuccess("Offer Successful");
       offercloseaftersuccess();
     } catch (error) {

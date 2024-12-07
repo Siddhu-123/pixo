@@ -18,7 +18,7 @@ function Uploadprofilepic({address2}) {
     const formData = new FormData();
     formData.append("image", image);
     try {
-        await axios.post("http://localhost:5000/uploadprofileimage", formData, {
+        await axios.post("http://localhost:5001/uploadprofileimage", formData, {
             headers: { "Content-Type": "multipart/form-data" },
         });
     } catch (error) {
@@ -38,7 +38,7 @@ function Uploadprofilepic({address2}) {
         id : address2,
         image: image.name,
       };
-      const response = await axios.post('http://localhost:5000/userprofileimage', formData);
+      const response = await axios.post('http://localhost:5001/userprofileimage', formData);
       console.log('Response:', response.data);
       handleprofileupload();
     } catch (error) {
@@ -53,7 +53,7 @@ function Uploadprofilepic({address2}) {
     fileInput.click();
   };
   useEffect(() => {
-    axios.get('http://localhost:5000/userinfo')
+    axios.get('http://localhost:5001/userinfo')
       .then(response => {
         const profileImage = response.data.data;
         profileImage.forEach(user => {

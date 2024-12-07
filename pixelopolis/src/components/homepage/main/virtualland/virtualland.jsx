@@ -7,7 +7,7 @@ const Virtualland = () =>{
     const [nftsdata,setnftsdata] = useState([]);
     const fetchData = async () => {
         try {
-            const nftsResponse = await axios.get('http://localhost:5000/nfts');
+            const nftsResponse = await axios.get('http://localhost:5001/nfts');
             const nftsData = nftsResponse.data.data;
             const nfts = nftsData.sort(() => Math.random() - 0.5);
             if (nfts) {

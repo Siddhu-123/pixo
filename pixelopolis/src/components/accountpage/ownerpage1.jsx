@@ -48,14 +48,14 @@ const Ownerpage = ({address}) =>{
     
     const fetchData = async () => {
         try {
-            const userInfoResponse = await axios.get('http://localhost:5000/userinfo');
+            const userInfoResponse = await axios.get('http://localhost:5001/userinfo');
             const userInfoData = userInfoResponse.data.data;
             userInfoData.forEach(user => {
                 if (user._id === id2) {
                     setinfoarray(user);
                 }
             });
-            const collectionsResponse = await axios.get('http://localhost:5000/collection');
+            const collectionsResponse = await axios.get('http://localhost:5001/collection');
             const collectionsData = collectionsResponse.data.data;
             const addressCollectionsMap = [];
             collectionsData.forEach(collection => {
@@ -65,7 +65,7 @@ const Ownerpage = ({address}) =>{
             });
             setcombineddata(addressCollectionsMap);
 
-            const nftsResponse = await axios.get('http://localhost:5000/nfts');
+            const nftsResponse = await axios.get('http://localhost:5001/nfts');
             const nftsData = nftsResponse.data.data;
             setallnftdata(nftsData);
 
@@ -301,7 +301,7 @@ const Ownerpage = ({address}) =>{
     const followinfo = {id: id2,address: address};
     const followbutton = async (e) => {
       try {
-        const response = await axios.post('http://localhost:5000/follow', followinfo);
+        const response = await axios.post('http://localhost:5001/follow', followinfo);
         if (response.data.message === 'success') {
             fetchData();
         }
@@ -311,7 +311,7 @@ const Ownerpage = ({address}) =>{
     };
     const unfollowbutton = async (e) => {
       try {
-        const response = await axios.post('http://localhost:5000/unfollow', followinfo);
+        const response = await axios.post('http://localhost:5001/unfollow', followinfo);
         if (response.data.message === 'success') {
         fetchData();
         }

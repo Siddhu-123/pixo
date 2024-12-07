@@ -38,7 +38,7 @@ const Collection = ({address}) =>{
         if(address){
             setconnect(true);
         }
-        axios.get('http://localhost:5000/collection')
+        axios.get('http://localhost:5001/collection')
             .then(response => {
                 const data = response.data.data;
                 const addressCollectionsMap = [];
@@ -100,7 +100,7 @@ const Collection = ({address}) =>{
         const formData = new FormData();
         formData.append("image", image);
         try {
-            await axios.post("http://localhost:5000/upload-collimage", formData, {
+            await axios.post("http://localhost:5001/upload-collimage", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             uploaddelay();
@@ -136,7 +136,7 @@ const Collection = ({address}) =>{
             };
             if(collectionid){
                 setcreatenftclicked(true);
-                await axios.post('http://localhost:5000/createcollection', formData);
+                await axios.post('http://localhost:5001/createcollection', formData);
                 contractdelay();
             }
         } catch (error) {

@@ -42,7 +42,7 @@ export const Cards = ({heading,type, category,address}) => {
       const fetchData = async () => {
           try {
             if(address){
-              const collectionsResponse = await axios.get('http://localhost:5000/collection');
+              const collectionsResponse = await axios.get('http://localhost:5001/collection');
               const collectionsData = collectionsResponse.data.data;
               const addressCollectionsMap = [];
   
@@ -51,7 +51,7 @@ export const Cards = ({heading,type, category,address}) => {
                     addressCollectionsMap.push(collection);
                   }
               });
-              const nftsResponse = await axios.get('http://localhost:5000/nfts');
+              const nftsResponse = await axios.get('http://localhost:5001/nfts');
               const nftsdata = nftsResponse.data.data;
               
               const flattenedCollections = [];

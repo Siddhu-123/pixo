@@ -7,7 +7,7 @@ const Carousel = ({slider}) => {
     const fetchData = async () => {
         try {
           const address = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const collectionsResponse = await axios.get('http://localhost:5000/collection');
+          const collectionsResponse = await axios.get('http://localhost:5001/collection');
           const addressCollectionsMap = collectionsResponse.data.data.filter(item => item.address !== address[0]);
           const randomcoll = addressCollectionsMap.sort(() => Math.random() - 0.5).slice(0, 5);
           setrandomcollection(randomcoll);

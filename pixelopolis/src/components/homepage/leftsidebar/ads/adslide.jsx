@@ -10,7 +10,7 @@ const AdSlide = () => {
     const fetchData = async () => {
       try {
         const address = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const response = await axios.get('http://localhost:5000/collection');
+        const response = await axios.get('http://localhost:5001/collection');
         const filteredCollections = response.data.data
           .filter((item) => item.address !== address[0])
           .sort(() => Math.random() - 0.5)

@@ -17,7 +17,7 @@ const Settings = ({ address }) => {
 
     const fetchData = async () => {
         try {
-            const nftsResponse = await axios.get('http://localhost:5000/userinfo');
+            const nftsResponse = await axios.get('http://localhost:5001/userinfo');
             const nftsData = nftsResponse.data.data;
             const foundUserData = nftsData.find(item => item._id === address);
             if (foundUserData) {
@@ -43,7 +43,7 @@ const Settings = ({ address }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/updateUserInfo', userData);
+            await axios.post('http://localhost:5001/updateUserInfo', userData);
             setupdatenoti(true);
         } catch (error) {
             console.error('Error updating data:', error);

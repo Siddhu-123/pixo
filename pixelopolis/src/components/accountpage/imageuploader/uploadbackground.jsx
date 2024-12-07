@@ -27,7 +27,7 @@ function Uploadback({address1}) {
         id : address1,
         image: image1.name,
       };
-      const response = await axios.post('http://localhost:5000/userbackimage', formData);
+      const response = await axios.post('http://localhost:5001/userbackimage', formData);
       console.log('Response:', response.data);
       handleimageupload();
     } catch (error) {
@@ -44,7 +44,7 @@ function Uploadback({address1}) {
     const formData = new FormData();
     formData.append("image", image1);
     try {
-      await axios.post("http://localhost:5000/uploadbackgroundimage", formData, {
+      await axios.post("http://localhost:5001/uploadbackgroundimage", formData, {
           headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Background image uploaded successfully");
@@ -53,7 +53,7 @@ function Uploadback({address1}) {
     }
   };
   useEffect(() => {
-    axios.get('http://localhost:5000/userinfo')
+    axios.get('http://localhost:5001/userinfo')
       .then(response => {
         const backgroundImage = response.data.data;
         backgroundImage.forEach(user => {

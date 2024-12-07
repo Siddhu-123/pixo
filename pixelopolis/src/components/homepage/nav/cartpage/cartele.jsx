@@ -12,7 +12,7 @@ const Cartele = ({imgg,name,collname,price,id,address,updated}) => {
   const cartinfo = {id: id,address: address};
   const removefromcart = async (e) => {
     try {
-      const response = await axios.post('http://localhost:5000/removefromcart', cartinfo);
+      const response = await axios.post('http://localhost:5001/removefromcart', cartinfo);
       if (response.data.message === 'removed') {
         updated(Math.random());
       }

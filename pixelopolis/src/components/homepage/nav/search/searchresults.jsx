@@ -15,15 +15,15 @@ const Searchresults = ({query}) => {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const nftsResponse = await axios.get('http://localhost:5000/nfts');
+            const nftsResponse = await axios.get('http://localhost:5001/nfts');
             const nftsData = nftsResponse.data.data;
             setAllNftData(nftsData);
 
-            const collResponse = await axios.get('http://localhost:5000/collection');
+            const collResponse = await axios.get('http://localhost:5001/collection');
             const collData = collResponse.data.data;
             setAllCollData(collData);
 
-            const userResponse = await axios.get('http://localhost:5000/userinfo');
+            const userResponse = await axios.get('http://localhost:5001/userinfo');
             const userData = userResponse.data.data;
             setAllUserData(userData);
 
