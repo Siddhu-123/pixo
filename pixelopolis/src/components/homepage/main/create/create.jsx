@@ -148,7 +148,7 @@ const Create = ({address}) => {
             await axios.post("http://localhost:5001/upload-nftimage", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-            await axios.post('http://127.0.0.1:5001/process_data', imagepath);
+            await axios.post('http://127.0.0.1:5000/process_data', imagepath);
             uploaddelay();
         } catch (error) {
             console.error("Error uploading image:", error);
