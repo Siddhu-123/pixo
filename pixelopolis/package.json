@@ -31,11 +31,14 @@
     "web-vitals": "^2.1.4",
     "web3": "^4.3.0"
   },
+  "homepage": "https://Siddhu-123.github.io/pixo",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

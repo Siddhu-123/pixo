@@ -524,7 +524,7 @@ const CardDetails = ({address}) => {
   };
   return (
     <>  
-      { nftdata && colldata ?(<></>):
+      { nftdata && colldata || !nftdata.transaction ?(<></>):
         (
           <div onClick={close} className='loading'>
             <Loading/>
