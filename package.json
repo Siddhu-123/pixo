@@ -2,5 +2,11 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "gh-pages": "^6.3.0"
-  }
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+}
+
 }
